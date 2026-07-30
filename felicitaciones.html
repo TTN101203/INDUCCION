@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>¡Felicitaciones!</title>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #e3f2fd, #d0f0e0);
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  overflow-x: hidden;
+}
+.container {
+  max-width: 850px;
+  margin: 60px auto;
+  padding: 40px;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+  animation: fadeIn 1s ease-in-out;
+}
+.logo {
+  width: 150px;
+  margin-bottom: 20px;
+}
+h1 {
+  color: #0077c8;
+  font-size: 2.2rem;
+  margin-bottom: 10px;
+}
+h2 {
+  color: #00a47a;
+  margin-bottom: 25px;
+}
+p {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+button, .btn {
+  display: inline-block;
+  margin: 10px;
+  padding: 14px 35px;
+  background: linear-gradient(90deg, #005ea6, #00b07c);
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  transition: transform 0.3s, box-shadow 0.3s;
+  text-decoration: none;
+}
+button:hover, .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+form {
+  margin-top: 30px;
+}
+input {
+  padding: 12px;
+  margin: 10px;
+  border-radius: 12px;
+  border: 2px solid #00b07c;
+  width: 250px;
+  font-size: 1rem;
+}
+label {
+  display: block;
+  font-size: 1rem;
+  margin-top: 10px;
+  color: #333;
+}
+.confetti {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 999;
+}
+@keyframes fadeIn {
+  from { opacity:0; transform:translateY(30px); }
+  to { opacity:1; transform:translateY(0); }
+}
+</style>
+</head>
+<body>
+
+<canvas class="confetti"></canvas>
+
+<div class="container">
+  <img src="logos/logo_terminal.png" alt="Logo Terminal" class="logo">
+  <h1>🎉 ¡Felicitaciones! 🎉</h1>
+  <h2>Has completado exitosamente tu inducción</h2>
+  <p>Bienvenido(a) nuevamente a <strong>Terminal de Transportes de Neiva S.A.</strong></p>
+
+  <p><strong>Por favor, resuelve las siguientes encuestas antes de descargar tu certificado:</strong></p>
+  <a href="https://forms.gle/7zrhSJE9PC62LkfT9" class="btn" target="_blank">📋 Perfil sociodemográfico</a>
+  <a href="https://forms.gle/6BZe3jRzzzowm3Ut7" class="btn" target="_blank">🛣️ Diagnóstico seguridad vial</a>
+
+  <form id="certForm">
+    <h3 style="color:#0077c8; margin-top:30px;">🎓 Genera tu certificado</h3>
+    <p>Ingresa tus datos y genera tu certificado con los puntajes reales de tus módulos:</p>
+
+    <input type="text" id="nombre" placeholder="Nombre completo" required>
+    <input type="text" id="cedula" placeholder="Cédula" required>
+
+    <button type="submit">📜 Generar Certificado</button>
+  </form>
+
+  <p style="margin-top:25px; color:#777;">Después de descargar tu certificado, la página se reiniciará y volverás al inicio.</p>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+<script>
+window.onload = () => lanzarConfeti();
+
+function lanzarConfeti() {
+  const canvas = document.querySelector('.confetti');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  const confeti = Array.from({ length: 200 }, () => ({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height - canvas.height,
+    r: Math.random() * 6 + 2,
+    color: `hsl(${Math.random() * 360}, 100%, 60%)`,
+    speed: Math.random() * 1.5 + 0.5,
+    tilt: Math.random() * 10 - 5,
+    tiltSpeed: Math.random() * 0.05 + 0.02
+  }));
+  (function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    confeti.forEach(p => {
+      ctx.beginPath();
+      ctx.lineWidth = p.r;
+      ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt, p.y);
+      ctx.lineTo(p.x + p.tilt + p.r / 2, p.y + p.r);
+      ctx.stroke();
+      p.y += p.speed;
+      p.tilt += p.tiltSpeed;
+      if (p.y > canvas.height) {
+        p.y = -10;
+        p.x = Math.random() * canvas.width;
+      }
+    });
+    requestAnimationFrame(draw);
+  })();
+}
+
+const modulos = [
+  { nombre: "Identidad Corporativa", max: 5 },
+  { nombre: "Gestión Institucional", max: 5 },
+  { nombre: "Seguridad y Salud", max: 5 },
+  { nombre: "PONS", max: 5 },
+  { nombre: "Gestión Ambiental", max: 5 },
+  { nombre: "Seguridad Vial", max: 5 },
+  { nombre: "SARLAFT y PTEE", max: 3 }
+];
+
+document.getElementById("certForm").addEventListener("submit", e => {
+  e.preventDefault();
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const cedula = document.getElementById("cedula").value.trim();
+  if (!nombre || !cedula) return alert("Por favor completa todos los campos.");
+
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
+
+  pdf.setFillColor(247, 247, 247);
+  pdf.rect(0, 0, 297, 210, "F");
+
+  const margin = 15;
+  const innerW = 297 - margin * 2;
+  const innerH = 210 - margin * 2;
+  pdf.setDrawColor(0, 91, 150);
+  pdf.setLineWidth(2);
+  pdf.rect(margin, margin, innerW, innerH);
+
+  const img = new Image();
+  img.src = "logos/logo_terminal.png";
+  img.onload = function() {
+    const logoW = 35;
+    const logoH = (img.height / img.width) * logoW;
+    const logoY = margin + 6;
+    pdf.addImage(img, "PNG", 148.5 - logoW / 2, logoY, logoW, logoH);
+
+    pdf.setFont("times", "bold");
+    pdf.setFontSize(14);
+    pdf.setTextColor(0, 91, 150);
+    pdf.text("CERTIFICADO DE INDUCCIÓN INSTITUCIONAL", 148.5, logoY + logoH + 10, { align: "center" });
+
+    pdf.setFont("times", "italic");
+    pdf.setFontSize(11);
+    pdf.setTextColor(0, 0, 0);
+    pdf.text(`Otorgado a: ${nombre}`, 148.5, logoY + logoH + 22, { align: "center" });
+
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(10);
+    pdf.text(`Cédula: ${cedula}`, 148.5, logoY + logoH + 30, { align: "center" });
+
+    pdf.setFontSize(9.5);
+    pdf.text(
+      "Por haber completado satisfactoriamente el proceso de inducción institucional del",
+      148.5, logoY + logoH + 40, { align: "center" }
+    );
+    pdf.text("Terminal de Transportes de Neiva S.A.", 148.5, logoY + logoH + 46, { align: "center" });
+
+    const startX = margin + 35;
+    let startY = logoY + logoH + 64;
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(10);
+    pdf.setTextColor(0, 91, 150);
+    pdf.text("Resultados por módulo:", startX, startY);
+
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(9);
+    pdf.setTextColor(0, 0, 0);
+    startY += 6;
+
+    let total = 0;
+    const maxTotal = modulos.reduce((acc, m) => acc + m.max, 0);
+
+    modulos.forEach((m, i) => {
+      const clave = `modulo${i + 1}_puntaje`;
+      let valor = localStorage.getItem(clave);
+      if (!valor || !valor.includes("/")) valor = "No completado";
+      else {
+        const [p] = valor.split("/").map(n => parseInt(n.trim()) || 0);
+        total += p;
+      }
+      pdf.text(`${m.nombre}: ${valor}`, startX, startY);
+      startY += 5;
+    });
+
+    const calificacion = Math.round((total / maxTotal) * 100);
+    const concepto = calificacion >= 70 ? "Aprobado" : "No Aprobado";
+
+    pdf.setFont("helvetica", "bold");
+    pdf.setFontSize(9.5);
+    pdf.setTextColor(0, 120, 60);
+    pdf.text(`Puntaje total: ${total}/${maxTotal}`, startX, startY + 5);
+    pdf.text(`Calificación final: ${calificacion}% (${concepto})`, startX, startY + 11);
+
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(9);
+    pdf.setTextColor(60);
+    const fecha = new Date().toLocaleDateString("es-CO", {
+      year: "numeric", month: "2-digit", day: "2-digit"
+    });
+    pdf.text(`Fecha de emisión: ${fecha}`, startX, startY + 22);
+
+    // ✍️ Línea de aprobación para firma (más arriba)
+    pdf.setFont("helvetica", "normal");
+    pdf.setFontSize(10);
+    pdf.setTextColor(0, 0, 0);
+    const firmaY = margin + innerH - 15;
+    pdf.text("Aprobó:", 235, firmaY);
+    pdf.setLineWidth(0.3); // 🔹 hace la línea más delgada
+    pdf.line(250, firmaY - 1, 280, firmaY - 1);
+
+    // 📌 Pie de página (debajo de la línea)
+    pdf.setFont("helvetica", "italic");
+    pdf.setFontSize(7.5);
+    pdf.setTextColor(100);
+    const footerY = margin + innerH - 4;
+    pdf.text(
+      "Este certificado es válido únicamente para la empresa Terminal de Transportes de Neiva S.A.",
+      margin + innerW - 2, footerY, { align: "right" }
+    );
+
+    pdf.save(`Certificado_Induccion_${nombre.replace(/\s+/g, "_")}.pdf`);
+    setTimeout(() => {
+      modulos.forEach((_, i) => localStorage.removeItem(`modulo${i + 1}_puntaje`));
+      localStorage.removeItem("modulosCompletados");
+      window.location.href = "index.html";
+    }, 3000);
+  };
+
+  img.onerror = () => {
+    console.warn("No se encontró el logo en logos/logo_terminal.png");
+    img.onload();
+  };
+});
+</script>

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Módulo 6 - Seguridad Vial</title>
+<style>
+/* ===== ESTILOS GENERALES ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* ===== ENCABEZADO ===== */
+header {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(120deg, #0077c8, #00a86b);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===== CONTENIDO ===== */
+main {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* ===== SECCIONES ===== */
+section {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ===== TITULOS ===== */
+section h2 {
+  color: #0077c8;
+  border-left: 5px solid #00a86b;
+  padding-left: 10px;
+  margin-top: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+section h3 {
+  color: #00a86b;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ===== LISTAS ===== */
+ul, ol {
+  padding-left: 25px;
+}
+ul li, ol li {
+  margin-bottom: 10px;
+}
+
+/* ===== BOTÓN ===== */
+#btn-iniciar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  font-size: 1.2rem;
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 auto 30px auto;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+#btn-iniciar:hover {
+  transform: scale(1.05);
+}
+
+/* ===== BOTÓN QUIZ ===== */
+.btn-quiz {
+  display: none;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: fit-content;
+  margin: 40px auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.btn-quiz:hover {
+  transform: scale(1.05);
+}
+
+/* ===== AGENTE ===== */
+.agente {
+  position: fixed;
+  bottom: 35px;
+  right: 25px;
+  width: 180px;
+  height: 180px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flotarSuave 4s ease-in-out infinite alternate;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0.1) 70%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.agente img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25));
+  animation: parpadeo 6s infinite;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes flotarSuave {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+@keyframes parpadeo {
+  0%, 90%, 100% { filter: brightness(1); }
+  95% { filter: brightness(0.8); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  header h1 { font-size: 1.6rem; }
+  main { margin: 20px auto; padding: 10px; }
+  section { padding: 20px; font-size: 0.95rem; }
+  .agente { width: 130px; height: 130px; bottom: 20px; right: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Módulo 6: Seguridad Vial</h1>
+</header>
+
+<main>
+  <button id="btn-iniciar"> >> Click aquí para iniciar el módulo << </button>
+
+  <!-- DEFINICIÓN -->
+  <section id="definicion">
+    <h2>🚦 Definición de Seguridad Vial</h2>
+    <p>
+      La seguridad vial es el conjunto de normas, prácticas y medidas orientadas a prevenir y reducir los accidentes de tránsito, 
+      protegiendo a conductores, pasajeros y peatones. Promueve la responsabilidad y la cultura del autocuidado en la vía.
+    </p>
+  </section>
+
+  <!-- PLAN ESTRATÉGICO -->
+  <section id="plan">
+    <h2>📋 Plan Estratégico de Seguridad Vial</h2>
+    <p>
+      El Plan Estratégico de Seguridad Vial (PESV) incluye políticas, procesos y acciones preventivas para gestionar los riesgos viales: 
+      capacitación, control de rutas, mantenimiento de vehículos, evaluación de conductores y concienciación en buenas prácticas.
+    </p>
+    <p>
+      Su objetivo es reducir incidentes y garantizar desplazamientos laborales seguros.
+    </p>
+  </section>
+
+  <!-- COMITÉ -->
+  <section id="comite">
+    <h2>👥 Comité de Seguridad Vial</h2>
+    <p>
+      El Comité de Seguridad Vial está compuesto por representantes de diferentes áreas. Sus funciones principales incluyen:
+    </p>
+    <ul>
+      <li>Diseñar y supervisar las acciones del PESV.</li>
+      <li>Analizar incidentes y realizar planes de mejora.</li>
+      <li>Coordinar campañas de formación y campañas de sensibilización.</li>
+      <li>Monitorear el cumplimiento de las políticas de seguridad vial.</li>
+    </ul>
+  </section>
+
+  <!-- RECOMENDACIONES -->
+  <section id="recomendaciones">
+    <h2>⚠️ Recomendaciones de Seguridad Vial</h2>
+    <ul>
+      <li>Usa siempre el cinturón de seguridad y elementos de protección cuando aplique.</li>
+      <li>Respeta los límites de velocidad y las señales de tránsito.</li>
+      <li>No uses el celular mientras conduces; detén el vehículo para atender llamadas o mensajes.</li>
+      <li>No conduzcas bajo los efectos del alcohol o sustancias psicoactivas.</li>
+      <li>Mantén pausas y evita la fatiga en viajes largos.</li>
+      <li>Realiza el mantenimiento preventivo del vehículo y verifica condiciones antes de salir.</li>
+    </ul>
+  </section>
+
+  <a href="quiz_modulo6.html" class="btn-quiz" id="btn-quiz"> >> Finalizar Módulo y Realizar Quiz << </a>
+</main>
+
+<!-- AGENTE -->
+<div class="agente" aria-hidden="true">
+  <img src="logos/agente.png" alt="Agente IA">
+</div>
+
+<script>
+let voces = [];
+
+function cargarVoces() {
+  return new Promise((resolve) => {
+    function obtenerVoces() {
+      voces = speechSynthesis.getVoices();
+      if (voces.length > 0) resolve(voces);
+      else setTimeout(obtenerVoces, 200);
+    }
+    obtenerVoces();
+  });
+}
+
+function hablar(texto, callback = null) {
+  if (!("speechSynthesis" in window)) {
+    alert("Tu navegador no soporta texto a voz.");
+    if (callback) callback();
+    return;
+  }
+
+  cargarVoces().then(() => {
+    const voz = voces.find(v => v.lang && v.lang.startsWith("es")) || voces[0];
+    const mensaje = new SpeechSynthesisUtterance(texto);
+    if (voz) mensaje.voice = voz;
+    mensaje.lang = (voz && voz.lang) ? voz.lang : 'es-ES';
+    mensaje.rate = 1;
+    mensaje.pitch = 1;
+    mensaje.volume = 1;
+    mensaje.onend = () => { if (callback) callback(); };
+    speechSynthesis.cancel();
+    speechSynthesis.speak(mensaje);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnQuiz = document.getElementById("btn-quiz");
+  const btnIniciar = document.getElementById("btn-iniciar");
+
+  // ✅ Mostrar quiz si ya se completó antes
+  let completados = JSON.parse(localStorage.getItem("modulosCompletados")) || [];
+  if (completados.includes(6)) {
+    btnQuiz.style.display = "block";
+    btnIniciar.style.display = "none";
+  }
+
+  btnIniciar.addEventListener("click", function() {
+    btnIniciar.style.display = "none";
+
+    const texto = "Bienvenido al módulo seis, Seguridad Vial. Aquí encontrarás la definición de seguridad vial, el plan estratégico para gestionar riesgos viales, la estructura y funciones del comité de seguridad vial y recomendaciones prácticas para conductores y peatones. Lee detenidamente cada sección. Cuando termine la explicación, aparecerá el botón para pasar al quiz y evaluar tu aprendizaje. ¡Buen viaje y mucha atención!";
+
+    hablar(texto, () => {
+      // Mostrar botón del quiz cuando termine la narración
+      btnQuiz.style.display = "block";
+
+      // Guardar progreso del módulo 6
+      let completados = JSON.parse(localStorage.getItem('modulosCompletados')) || [];
+      if (!completados.includes(6)) {
+        completados.push(6);
+        localStorage.setItem('modulosCompletados', JSON.stringify(completados));
+      }
+    });
+  });
+});
+</script>
+

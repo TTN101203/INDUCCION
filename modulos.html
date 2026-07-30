@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Módulos de Inducción — Terminal de Transportes</title>
+
+<!-- Fuente iOS-like -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --bg: #f5f6f7;
+  --card: #ffffff;
+  --muted: #6a7885;
+  --accent: #1162d9;
+  --success: #3cd57b;
+  --radius: 22px;
+  --shadow: 0 6px 20px rgba(0,0,0,0.06);
+  --transition: 230ms ease;
+}
+
+body{
+  margin:0;
+  font-family:"Inter", sans-serif;
+  background:var(--bg);
+  padding:22px;
+  display:flex;
+  justify-content:center;
+  color:#0e1726;
+}
+
+.container{
+  width:100%;
+  max-width:1000px;
+}
+
+/* Header */
+.header{
+  margin-bottom:18px;
+  display:flex;
+  gap:14px;
+  align-items:center;
+}
+
+.logo{
+  width:54px;
+  height:54px;
+  background:var(--accent);
+  color:white;
+  border-radius:16px;
+  font-weight:600;
+  font-size:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.title{
+  margin:0;
+  font-size:1.35rem;
+  font-weight:600;
+}
+
+.subtitle{
+  margin:2px 0 0 0;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+/* Barra progreso */
+.progress-wrap{
+  margin-top:10px;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.progress-bar{
+  flex:1;
+  height:10px;
+  background:#e8ebee;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.progress-fill{
+  height:100%;
+  width:0%;
+  background:var(--accent);
+  border-radius:999px;
+  transition:width var(--transition);
+}
+
+.progress-text{
+  width:46px;
+  text-align:right;
+  color:var(--muted);
+  font-size:0.85rem;
+}
+
+/* Grid */
+.grid{
+  margin-top:22px;
+  display:flex;
+  flex-direction:column;
+  gap:14px;
+}
+
+/* CARD NUEVO ESTILO iOS */
+.card{
+  background:var(--card);
+  border-radius:var(--radius);
+  padding:16px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:14px;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+  transition:transform var(--transition), box-shadow var(--transition);
+}
+
+.card:hover{
+  transform:scale(0.99);
+}
+
+.card:active{
+  transform:scale(0.97);
+}
+
+/* izquierda */
+.left{
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.icon{
+  width:52px;
+  height:52px;
+  border-radius:50%;
+  background:linear-gradient(145deg, #f2f4f7, #ffffff);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:22px;
+  color:var(--accent);
+  box-shadow:inset 2px 2px 4px rgba(0,0,0,0.05),
+              inset -2px -2px 4px rgba(255,255,255,1);
+}
+
+.info h3{
+  margin:0;
+  font-size:1.05rem;
+  font-weight:600;
+}
+
+.info p{
+  margin:3px 0 0;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+/* Badge completado iOS */
+.badge{
+  background:var(--success);
+  padding:4px 10px;
+  font-size:0.78rem;
+  border-radius:999px;
+  color:white;
+  display:none;
+}
+
+.card.completado .badge{
+  display:inline-block;
+}
+
+/* Flecha iOS */
+.arrow{
+  color:#b8c1cc;
+  font-size:20px;
+  opacity:0.8;
+}
+
+/* Footer */
+.footer{
+  margin-top:14px;
+  color:var(--muted);
+  font-size:0.88rem;
+  display:flex;
+  justify-content:space-between;
+}
+</style>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="header">
+    <div class="logo">TTN</div>
+    <div>
+      <h1 class="title">Módulos de Inducción</h1>
+      <p class="subtitle">Bienvenido — aprende los fundamentos.</p>
+
+      <div class="progress-wrap">
+        <div class="progress-bar">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div id="progressText" class="progress-text">0%</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Módulos estilo iOS -->
+  <div id="grid" class="grid">
+
+    <!-- Módulo 1 -->
+    <div class="card" data-modulo="1">
+      <div class="left">
+        <div class="icon">
+          🏢
+        </div>
+        <div class="info">
+          <h3>Módulo 1</h3>
+          <p>Identidad Corporativa</p>
+          <span class="badge">Completado</span>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <!-- Módulo 2 -->
+    <div class="card" data-modulo="2">
+      <div class="left">
+        <div class="icon">📋</div>
+        <div class="info">
+          <h3>Módulo 2</h3>
+          <p>Gestión Institucional</p>
+          <span class="badge">Completado</span>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <!-- Módulo 3 -->
+    <div class="card" data-modulo="3">
+      <div class="left">
+        <div class="icon">🛡️</div>
+        <div class="info">
+          <h3>Módulo 3</h3>
+          <p>Seguridad y Salud en el Trabajo</p>
+          <span class="badge">Completado</span>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <!-- Módulo 4 -->
+    <div class="card" data-modulo="4">
+      <div class="left">
+        <div class="icon">🚨</div>
+        <div class="info">
+          <h3>Módulo 4</h3>
+          <p>Prevención, Preparación y Respuesta ante Emergencias</p>
+          <span class="badge">Completado</span>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <!-- Módulo 5 -->
+    <div class="card" data-modulo="5">
+      <div class="left">
+        <div class="icon">🌿</div>
+        <div class="info">
+          <h3>Módulo 5</h3>
+          <p>Gestión Ambiental</p>
+          <span class="badge">Completado</span>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <!-- Módulo 6 -->
+    <div class="card" data-modulo="6">
+      <div class="left">
+        <div class="icon">🚧</div>
+        <div class="info">
+          <h3>Módulo 6</h3>
+          <p>Seguridad Vial</p>
+          <span class="badge">Completado</span>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+    <!-- Módulo 7 -->
+    <div class="card" data-modulo="7">
+      <div class="left">
+        <div class="icon">🛡️</div>
+        <div class="info">
+          <h3>Módulo 7</h3>
+          <p>SARLAFT y PTEE</p>
+          <span class="badge">Completado</span>
+        </div>
+      </div>
+      <div class="arrow">›</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <span id="summary">0 de 7 completados</span>
+  </div>
+
+</div>
+
+<script>
+/* LOGICA MANTENIDA */
+(function(){
+  const cards = Array.from(document.querySelectorAll('.card'));
+  const STORAGE_KEY = 'modulosCompletados';
+  const total = cards.length;
+
+  const progressFill = document.getElementById('progressFill');
+  const progressText = document.getElementById('progressText');
+  const summary = document.getElementById('summary');
+
+  function leer(){
+    try{
+      return JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    }catch(e){
+      return [];
+    }
+  }
+
+  function guardar(arr){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(arr));
+  }
+
+  function aplicar(){
+    const arr = leer();
+    cards.forEach(card=>{
+      const id = card.dataset.modulo;
+      arr.includes(id)
+        ? card.classList.add('completado')
+        : card.classList.remove('completado');
+    });
+
+    const done = arr.length;
+    const pct = Math.round((done/total)*100);
+    progressFill.style.width = pct + "%";
+    progressText.textContent = pct + "%";
+    summary.textContent = `${done} de ${total} completados`;
+  }
+
+  function toggle(id){
+    const arr = leer();
+    const idx = arr.indexOf(id);
+    idx >= 0 ? arr.splice(idx,1) : arr.push(id);
+    guardar(arr);
+    aplicar();
+  }
+
+  // CLICK: abrir módulo
+  cards.forEach(card=>{
+    const id = card.dataset.modulo;
+
+    card.addEventListener("click", e=>{
+      if(e.target.classList.contains("badge")) return;
+      window.location.href = `modulo${id}.html`;
+    });
+
+    // Mantener presionado → marcar completado
+    let pressTimer;
+    card.addEventListener('mousedown', ()=>{
+      pressTimer = setTimeout(()=> toggle(id), 500);
+    });
+    card.addEventListener('mouseup', ()=> clearTimeout(pressTimer));
+    card.addEventListener('mouseleave', ()=> clearTimeout(pressTimer));
+  });
+
+  aplicar();
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Módulo 3 - SG-SST</title>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #dce7f2);
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+/* ===== CONTENEDOR ===== */
+.quiz-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 25px 30px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ===== TÍTULO ===== */
+h1 {
+  text-align: center;
+  color: #0077c8;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+/* ===== PREGUNTAS ===== */
+.question {
+  margin-bottom: 25px;
+  padding: 20px;
+  border-left: 6px solid #00b07c;
+  background: #f9fbfc;
+  border-radius: 15px;
+  transition: transform 0.2s;
+}
+.question:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== OPCIONES ===== */
+.options label {
+  display: block;
+  background: #e1f0e9;
+  margin: 8px 0;
+  padding: 12px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+}
+.options input[type="radio"] { display: none; }
+.options input[type="radio"]:checked + span {
+  background: linear-gradient(90deg, #005ea6, #00b07c);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== BOTÓN ===== */
+button {
+  display: block;
+  margin: 25px auto 0 auto;
+  padding: 16px 40px;
+  background: linear-gradient(90deg,#005ea6,#00b07c);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* ===== MENSAJE FINAL ===== */
+#mensajeFinal {
+  display:none;
+  max-width:600px;
+  margin: 40px auto;
+  padding: 30px;
+  text-align:center;
+  background: linear-gradient(135deg,#00b07c,#005ea6);
+  color:white;
+  font-size:1.5rem;
+  font-weight:700;
+  border-radius:25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+/* ===== RESPONSIVIDAD ===== */
+@media (max-width: 1024px) {
+  .quiz-container { margin: 30px 20px; padding: 20px; }
+  h1 { font-size: 1.8rem; }
+}
+@media (max-width: 768px) {
+  .quiz-container { margin: 20px 15px; padding: 15px; }
+  h1 { font-size: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .quiz-container { margin: 15px 10px; padding: 12px; }
+  h1 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <h1>Quiz Módulo 3: Seguridad y Salud en el Trabajo (SST)</h1>
+  <form id="quizForm">
+
+    <!-- Pregunta 1 -->
+    <div class="question">
+      <p>1. ¿Cuál es el principal objetivo de la SST?</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="A"><span>A. Cumplir únicamente con la normatividad</span></label>
+        <label><input type="radio" name="q1" value="B"><span>B. Proteger y promover la salud de los trabajadores</span></label>
+        <label><input type="radio" name="q1" value="C"><span>C. Aumentar la productividad sin control de riesgos</span></label>
+        <label><input type="radio" name="q1" value="D"><span>D. Reducir los costos operativos</span></label>
+      </div>
+    </div>
+
+    <!-- Pregunta 2 -->
+    <div class="question">
+      <p>2. ¿Qué norma internacional se relaciona con la SST?</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="A"><span>A. ISO 9001:2015</span></label>
+        <label><input type="radio" name="q2" value="B"><span>B. ISO 14001:2015</span></label>
+        <label><input type="radio" name="q2" value="C"><span>C. ISO 45001:2018</span></label>
+        <label><input type="radio" name="q2" value="D"><span>D. ISO 27001:2013</span></label>
+      </div>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="question">
+      <p>3. ¿Cual es la ley por la cual se reglamenta el acoso laboral?</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="A"><span>A. Ley 2550 de 2005</span></label>
+        <label><input type="radio" name="q3" value="B"><span>B. Ley 1010 de 2006</span></label>
+        <label><input type="radio" name="q3" value="C"><span>C. Ley 3030 de 2004</span></label>
+        <label><input type="radio" name="q3" value="D"><span>D. Ley 3636 de 2003</span></label>
+      </div>
+    </div>
+<!-- Pregunta 4 -->
+<div class="question">
+  <p>4. ¿Una de mis Responsabilidades como Trabajador es?</p>
+  <div class="options">
+    <label>
+      <input type="radio" name="q4" value="A">
+      <span>
+        A. Procurar el cuidado integral de mi salud, atendiendo las recomendaciones y/o restricciones emitidas por el médico evaluador, tanto en el ámbito intralaboral como extralaboral
+      </span>
+    </label>
+
+    <label>
+      <input type="radio" name="q4" value="B">
+      <span>B. Llegar tarde</span>
+    </label>
+
+    <label>
+      <input type="radio" name="q4" value="C">
+      <span>C. Utilizar el celular durante la jornada laboral</span>
+    </label>
+
+    <label>
+      <input type="radio" name="q4" value="D">
+      <span>D. Llegar mal vestido</span>
+    </label>
+  </div>
+</div>
+
+    <!-- Pregunta 5 -->
+    <div class="question">
+      <p>5. ¿Qué entidad en Colombia supervisa el cumplimiento de la SST?</p>
+      <div class="options">
+        <label><input type="radio" name="q5" value="A"><span>A. Ministerio de Salud</span></label>
+        <label><input type="radio" name="q5" value="B"><span>B. Ministerio del Trabajo</span></label>
+        <label><input type="radio" name="q5" value="C"><span>C. Ministerio de Educación</span></label>
+        <label><input type="radio" name="q5" value="D"><span>D. Ministerio de Ambiente</span></label>
+      </div>
+    </div>
+
+    <button type="submit">Finalizar Quiz</button>
+  </form>
+</div>
+
+<!-- Mensaje final -->
+<div id="mensajeFinal"></div>
+
+<script>
+// Respuestas correctas
+const respuestasCorrectas = { 
+  q1: "B", 
+  q2: "C", 
+  q3: "B", 
+  q4: "A", 
+  q5: "B" 
+};
+
+// ===== Texto a voz =====
+let vocesCargadas = [];
+function cargarVoces() {
+  return new Promise(resolve => {
+    function obtenerVoces() {
+      vocesCargadas = speechSynthesis.getVoices();
+      if(vocesCargadas.length>0) resolve(vocesCargadas);
+      else setTimeout(obtenerVoces,200);
+    }
+    obtenerVoces();
+  });
+}
+
+function hablar(texto, callback=null) {
+  if(!("speechSynthesis" in window)) return;
+  cargarVoces().then(()=>{
+    let voz = vocesCargadas.find(v=>v.lang.startsWith("es")) || vocesCargadas[0];
+    const mensaje = new SpeechSynthesisUtterance(texto);
+    mensaje.voice=voz;
+    mensaje.lang=voz.lang;
+    mensaje.rate=1.0;
+    mensaje.pitch=1;
+    mensaje.volume=1;
+    mensaje.onend=()=>{if(callback) callback();};
+    speechSynthesis.cancel();
+    speechSynthesis.speak(mensaje);
+  });
+}
+
+// Leer cada pregunta al hacer clic
+const preguntas = document.querySelectorAll(".question p");
+preguntas.forEach(p=>{
+  p.addEventListener("click",()=>hablar(p.textContent));
+});
+
+// ===== Envío del formulario =====
+document.getElementById("quizForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  let puntaje = 0;
+  for(let q in respuestasCorrectas){
+    const seleccion = document.querySelector(`input[name=${q}]:checked`);
+    if(seleccion && seleccion.value===respuestasCorrectas[q]) puntaje++;
+  }
+
+  // Guardar módulo completado
+  let completados = JSON.parse(localStorage.getItem('modulosCompletados')) || [];
+  if(!completados.includes(3)){
+    completados.push(3);
+    localStorage.setItem('modulosCompletados', JSON.stringify(completados));
+  }
+
+  // Guardar puntaje real en localStorage
+  localStorage.setItem("modulo3_puntaje", `${puntaje}/5`);
+
+  // Mostrar mensaje final
+  document.getElementById("quizForm").style.display = "none";
+  const mensaje = document.getElementById("mensajeFinal");
+  mensaje.textContent = `🎉¡Felicidades! Has completado el Módulo 3. Tu puntaje: ${puntaje}/5🎯`;
+  mensaje.style.display = "block";
+
+  hablar(`Felicitaciones. Has completado el módulo tres con un puntaje de ${puntaje} sobre 5.`);
+
+  setTimeout(() => {
+    window.location.href = 'modulos.html';
+  }, 5500);
+});
+</script>
+
+</body>
+</html>

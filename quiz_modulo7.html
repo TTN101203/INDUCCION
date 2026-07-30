@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz Módulo 7 - SARLAFT y PTEE</title>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #dce7f2);
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+/* ===== CONTENEDOR ===== */
+.quiz-container {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 25px 30px;
+  background: #fff;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+/* ===== TÍTULO ===== */
+h1 {
+  text-align: center;
+  color: #0077c8;
+  margin-bottom: 30px;
+  font-size: 2rem;
+}
+
+/* ===== PREGUNTAS ===== */
+.question {
+  margin-bottom: 25px;
+  padding: 20px;
+  border-left: 6px solid #00b07c;
+  background: #f9fbfc;
+  border-radius: 15px;
+  transition: transform 0.2s;
+}
+.question:hover {
+  transform: translateY(-5px);
+}
+
+/* ===== OPCIONES ===== */
+.options label {
+  display: block;
+  background: #e1f0e9;
+  margin: 8px 0;
+  padding: 12px 15px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+}
+.options input[type="radio"] { display: none; }
+.options input[type="radio"]:checked + span {
+  background: linear-gradient(90deg, #005ea6, #00b07c);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ===== BOTÓN ===== */
+button {
+  display: block;
+  margin: 25px auto 0 auto;
+  padding: 16px 40px;
+  background: linear-gradient(90deg,#005ea6,#00b07c);
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+button:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* ===== MENSAJE FINAL ===== */
+#mensajeFinal {
+  display:none;
+  max-width:600px;
+  margin: 40px auto;
+  padding: 30px;
+  text-align:center;
+  background: linear-gradient(135deg,#00b07c,#005ea6);
+  color:white;
+  font-size:1.5rem;
+  font-weight:700;
+  border-radius:25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes fadeIn {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
+}
+
+/* ===== RESPONSIVIDAD ===== */
+@media (max-width: 1024px) {
+  .quiz-container { margin: 30px 20px; padding: 20px; }
+  h1 { font-size: 1.8rem; }
+}
+@media (max-width: 768px) {
+  .quiz-container { margin: 20px 15px; padding: 15px; }
+  h1 { font-size: 1.5rem; }
+}
+@media (max-width: 480px) {
+  .quiz-container { margin: 15px 10px; padding: 12px; }
+  h1 { font-size: 1.3rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="quiz-container">
+  <h1>Quiz Módulo 7: SARLAFT y PTEE</h1>
+  <form id="quizForm">
+
+    <!-- Pregunta 1 -->
+    <div class="question">
+      <p>1. El SARLAFT tiene como propósito prevenir que la organización sea utilizada para actividades relacionadas con el lavado de activos, la financiación del terrorismo y el financiamiento de la proliferación de armas de destrucción masiva.</p>
+      <div class="options">
+        <label><input type="radio" name="q1" value="V"><span>Verdadero</span></label>
+        <label><input type="radio" name="q1" value="F"><span>Falso</span></label>
+      </div>
+    </div>
+
+    <!-- Pregunta 2 -->
+    <div class="question">
+      <p>2. Es aceptable que un colaborador omita reportar una situación sospechosa si considera que no tendrá consecuencias para la organización.</p>
+      <div class="options">
+        <label><input type="radio" name="q2" value="V"><span>Verdadero</span></label>
+        <label><input type="radio" name="q2" value="F"><span>Falso</span></label>
+      </div>
+    </div>
+
+    <!-- Pregunta 3 -->
+    <div class="question">
+      <p>3. El Programa de Transparencia y Ética Empresarial (PTEE) promueve una cultura de integridad, transparencia y prevención de la corrupción dentro de la organización.</p>
+      <div class="options">
+        <label><input type="radio" name="q3" value="V"><span>Verdadero</span></label>
+        <label><input type="radio" name="q3" value="F"><span>Falso</span></label>
+      </div>
+    </div>
+
+    <button type="submit">Finalizar Quiz</button>
+  </form>
+</div>
+
+<!-- Mensaje final -->
+<div id="mensajeFinal"></div>
+
+<script>
+// Respuestas correctas
+const respuestasCorrectas = {
+  q1: "V",
+  q2: "F",
+  q3: "V"
+};
+
+// ===== Texto a voz =====
+let vocesCargadas = [];
+function cargarVoces() {
+  return new Promise(resolve => {
+    function obtenerVoces() {
+      vocesCargadas = speechSynthesis.getVoices();
+      if(vocesCargadas.length>0) resolve(vocesCargadas);
+      else setTimeout(obtenerVoces,200);
+    }
+    obtenerVoces();
+  });
+}
+
+function hablar(texto, callback=null) {
+  if(!("speechSynthesis" in window)) return;
+  cargarVoces().then(()=>{
+    let voz = vocesCargadas.find(v=>v.lang.startsWith("es")) || vocesCargadas[0];
+    const mensaje = new SpeechSynthesisUtterance(texto);
+    mensaje.voice=voz;
+    mensaje.lang=voz.lang;
+    mensaje.rate=1.0;
+    mensaje.pitch=1;
+    mensaje.volume=1;
+    mensaje.onend=()=>{if(callback) callback();};
+    speechSynthesis.cancel();
+    speechSynthesis.speak(mensaje);
+  });
+}
+
+// Leer cada pregunta al hacer clic
+const preguntas = document.querySelectorAll(".question p");
+preguntas.forEach(p=>{
+  p.addEventListener("click",()=>hablar(p.textContent));
+});
+
+// ===== Envío del formulario =====
+document.getElementById("quizForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  let puntaje = 0;
+  for(let q in respuestasCorrectas){
+    const seleccion = document.querySelector(`input[name=${q}]:checked`);
+    if(seleccion && seleccion.value===respuestasCorrectas[q]) puntaje++;
+  }
+
+  // Guardar módulo completado
+  let completados = JSON.parse(localStorage.getItem('modulosCompletados')) || [];
+  if(!completados.includes(7)){
+    completados.push(7);
+    localStorage.setItem('modulosCompletados', JSON.stringify(completados));
+  }
+
+// Guardar puntaje real en localStorage
+  localStorage.setItem("modulo7_puntaje", `${puntaje}/3`);
+
+  // Mostrar mensaje final
+  document.getElementById("quizForm").style.display = "none";
+  const mensaje = document.getElementById("mensajeFinal");
+  mensaje.innerHTML = `🎉¡Excelente trabajo! Has completado el Módulo 7. Tu puntaje: ${puntaje}/3🎯`;
+
+  // Crear botón para ir a felicitaciones.html
+  const botonCertificado = document.createElement("button");
+  botonCertificado.textContent = "Obten tu certificado";
+  botonCertificado.style.marginTop = "20px";
+  botonCertificado.onclick = () => {
+    window.location.href = "felicitaciones.html";
+  };
+  mensaje.appendChild(botonCertificado);
+
+  mensaje.style.display = "block";
+
+  hablar(`Felicitaciones. Has completado el módulo siete con un puntaje de ${puntaje} sobre 3.`);
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 2 - Políticas, Objetivos y Certificaciones</title>
+<style>
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f0f4f8, #dce7f2);
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  overflow-x: hidden;
+}
+
+/* ===== ENCABEZADO ===== */
+header {
+  text-align: center;
+  padding: 35px 20px;
+  background: linear-gradient(135deg, #005ea6, #00b07c);
+  color: white;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.25);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+  animation: fadeIn 1s ease-in-out;
+}
+header h1 { margin: 0; font-size: 2rem; letter-spacing: 1px; }
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+main {
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+}
+
+/* ===== SECCIONES ===== */
+section {
+  background: #fff;
+  padding: 30px 25px;
+  border-radius: 25px;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.1);
+  text-align: justify;
+  margin-bottom: 35px;
+  transition: transform 0.3s;
+}
+section:hover { transform: translateY(-5px); }
+
+/* ===== TÍTULOS DE SECCIÓN ===== */
+section h2 {
+  color: #0077c8;
+  margin-bottom: 15px;
+  font-size: 1.6rem;
+  border-bottom: 3px solid #00b07c;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+/* ===== BOTONES ===== */
+#btn-iniciar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #005ea6, #00b07c);
+  color: white;
+  font-size: 1.3rem;
+  padding: 16px 36px;
+  border-radius: 15px;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+  margin: 25px auto;
+  transition: 0.3s;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+#btn-iniciar:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+.btn-quiz {
+  display: none;
+  display: block;
+  width: fit-content;
+  margin: 25px auto;
+  padding: 16px 36px;
+  background: linear-gradient(90deg,#005ea6,#00b07c);
+  color: white;
+  text-decoration: none;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  text-align: center;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+  transition: all 0.3s ease;
+}
+.btn-quiz:hover {
+  transform: scale(1.07);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.35);
+}
+
+/* ===== INFO TERMINAL ===== */
+.info-terminal {
+  background: #fff3e6;
+  border-left: 6px solid #ff8c42;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 15px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  line-height: 1.6;
+}
+.info-terminal ul { margin: 10px 0 10px 20px; }
+.info-terminal li { margin-bottom: 8px; }
+
+/* ===== AGENTE INTELIGENTE ===== */
+.agente {
+  position: fixed;
+  bottom: 35px;
+  right: 25px;
+  width: 180px;
+  height: 180px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flotarSuave 4s ease-in-out infinite alternate;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0.1) 70%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.agente img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25));
+  animation: parpadeo 6s infinite;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes flotarSuave { 0% { transform: translateY(0); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0); } }
+@keyframes parpadeo { 0%,90%,100%{filter:brightness(1);} 95%{filter:brightness(0.85);} }
+@keyframes fadeIn { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
+
+/* ===== RESPONSIVIDAD ===== */
+@media (max-width: 1024px) { .agente { width: 150px; height: 150px; bottom: 25px; right: 20px; } }
+@media (max-width: 768px) {
+  header h1 { font-size: 1.6rem; }
+  main { margin: 20px auto; padding: 10px; }
+  section { padding: 20px; font-size: 0.95rem; }
+  .agente { width: 130px; height: 130px; bottom: 20px; right: 20px; }
+}
+@media (max-width: 480px) {
+  header h1 { font-size: 1.3rem; }
+  .agente { width: 110px; height: 110px; bottom: 15px; right: 15px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Módulo 2: Políticas, Objetivos y Certificaciones</h1>
+</header>
+
+<main>
+  <button id="btn-iniciar" class="btn-iniciar">
+    <i class="fa-solid fa-arrow-right"></i> >> Click aquí para iniciar el módulo << </button>
+
+  <section id="politicas">
+    <h2>Políticas Institucionales</h2>
+    <div class="info-terminal">
+      <p>Descarga y lee detenidamente cada una de las políticas institucionales de la empresa:</p>
+      <ul>
+        <li><a href="docs/politica_sistema_de_gestion_integral.pdf" download>Política del Sistema de Gestión Integral</a></li>
+        <li><a href="docs/politica_alcohol_y_drogas.pdf" download>Política de Alcohol y Drogas</a></li>
+        <li><a href="docs/politica_desconexion_laboral.pdf" download>Política de Desconexión Laboral</a></li>
+        <li><a href="docs/politica_discriminacion.pdf" download>Política de No Discriminación</a></li>
+        <li><a href="docs/politica_acoso_laboral.pdf" download>Política de Prevención del Acoso Laboral</a></li>
+        <li><a href="docs/politica_acoso_sexual.pdf" download>Politica de Prevención de Acoso Sexual</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="objetivos">
+    <h2>Objetivos del Sistema de Gestión Integral (SGI)</h2>
+    <div class="info-terminal">
+      <ul>
+        <li>Propender por la generación de rentabilidad económica.</li>
+        <li>Mejorar continuamente el SGI.</li>
+        <li>Lograr la satisfacción del cliente.</li>
+        <li>Garantizar el cumplimiento de los requisitos legales aplicables.</li>
+        <li>Prevenir y minimizar la contaminación ambiental.</li>
+        <li>Prevenir accidentes de trabajo y enfermedades laborales.</li>
+        <li>Promover la participación de los trabajadores en la mejora del SGI.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="mapa">
+    <h2>Mapa de Procesos</h2>
+    <div class="info-terminal">
+      <p>Consulta el mapa de procesos institucional, donde se representa gráficamente la estructura y funcionamiento del Sistema de Gestión Integral:</p>
+      <img src="images/mapa_de_procesos.png" alt="Mapa de Procesos" style="width:100%; border-radius:15px;">
+    </div>
+  </section>
+
+  <section id="certificaciones">
+    <h2>Certificaciones</h2>
+    <div class="info-terminal">
+      <ul>
+        <li>ISO 9001:2015 - Sistema de Gestión de Calidad.</li>
+        <li>ISO 14001:2015 - Sistema de Gestión Ambiental.</li>
+        <li>ISO 45001:2018 - Seguridad y Salud en el Trabajo.</li>
+      </ul>
+    </div>
+  </section>
+
+  <a href="quiz_modulo2.html" class="btn-quiz" id="btn-quiz"> >> Finalizar Módulo y Realizar Quiz << </a>
+</main>
+
+<!-- Agente Inteligente -->
+<div class="agente">
+  <img src="logos/agente.png" alt="Agente IA">
+</div>
+
+<script>
+let vocesCargadas = [];
+
+function cargarVoces() {
+  return new Promise((resolve) => {
+    function obtenerVoces() {
+      vocesCargadas = speechSynthesis.getVoices();
+      if (vocesCargadas.length > 0) resolve(vocesCargadas);
+      else setTimeout(obtenerVoces, 200);
+    }
+    obtenerVoces();
+  });
+}
+
+function hablar(texto, callback = null) {
+  if (!("speechSynthesis" in window)) return;
+  cargarVoces().then(() => {
+    let vozPreferida = vocesCargadas.find(v => /es-CO/i.test(v.lang)) ||
+                       vocesCargadas.find(v => /es-(419|MX|AR|CL|PE|CO)/i.test(v.lang)) ||
+                       vocesCargadas.find(v => v.lang.startsWith("es")) ||
+                       vocesCargadas[0];
+
+    const mensaje = new SpeechSynthesisUtterance(texto);
+    mensaje.voice = vozPreferida;
+    mensaje.lang = vozPreferida.lang;
+    mensaje.rate = 0.95;
+    mensaje.pitch = 1.0;
+    mensaje.volume = 1;
+    mensaje.onend = () => { if (callback) callback(); };
+
+    speechSynthesis.cancel();
+    speechSynthesis.speak(mensaje);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnIniciar = document.getElementById("btn-iniciar");
+  const btnQuiz = document.getElementById("btn-quiz");
+
+  // Si ya completó antes, mostrar el botón
+  const completados = JSON.parse(localStorage.getItem('modulosCompletados')) || [];
+  if (completados.includes(2)) {
+    btnIniciar.style.display = "none";
+    btnQuiz.style.display = "block";
+  }
+
+  btnIniciar.addEventListener("click", function() {
+    this.style.display = "none";
+
+    hablar("Hola de nuevo, bienvenido al módulo dos de tu proceso de inducción. En este espacio conocerás nuestras políticas institucionales, los objetivos del Sistema de Gestión Integral y las certificaciones que respaldan nuestro compromiso con la calidad.", () => {
+      hablar("Comencemos con las políticas institucionales. Descárgalas y léelas con atención, ya que guían nuestras acciones y reflejan los valores de la empresa.", () => {
+        hablar("A continuación, revisa los objetivos del Sistema de Gestión Integral. Estos muestran hacia dónde dirigimos nuestros esfuerzos para mejorar continuamente y brindar un servicio de excelencia.", () => {
+          hablar("Luego, observa el mapa de procesos institucional. Allí verás cómo se conectan nuestras áreas para lograr los resultados que nos proponemos cada día.", () => {
+            hablar("Y para finalizar, conoce nuestras certificaciones. Ellas demuestran el compromiso del Terminal de Transportes de Neiva con la calidad, el medio ambiente y la seguridad de todos.", () => {
+              hablar("¡Excelente! Has completado el módulo dos. Cuando termines de revisar toda la información, podrás realizar el quiz para continuar con la siguiente etapa.", () => {
+                btnQuiz.style.display = "block";
+
+                // ✅ Guardar progreso del módulo 2
+                let completados = JSON.parse(localStorage.getItem('modulosCompletados')) || [];
+                if (!completados.includes(2)) {
+                  completados.push(2);
+                  localStorage.setItem('modulosCompletados', JSON.stringify(completados));
+                }
+              });
+            });
+          });
+        });
+      });
+    });
+  });
+});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 3 - Seguridad y Salud en el Trabajo (SST)</title>
+<style>
+/* ===== GENERAL ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* ===== ENCABEZADO ===== */
+header {
+  text-align: center;
+  padding: 40px 20px; 
+  background: linear-gradient(120deg, #0077c8, #00a86b);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===== CONTENIDO PRINCIPAL ===== */
+main {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* ===== SECCIONES ===== */
+section {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+section:nth-child(odd) {
+  background: #fdfefe;
+}
+section:nth-child(even) {
+  background: #f8fbff;
+}
+
+/* ===== TITULOS ===== */
+section h2 {
+  color: #0077c8;
+  border-left: 5px solid #00a86b;
+  padding-left: 10px;
+  margin-top: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+section h3 {
+  color: #00a86b;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ===== LISTAS ===== */
+ul {
+  list-style: none;
+  padding-left: 20px;
+}
+ul li {
+  margin-bottom: 10px;
+  padding-left: 25px;
+  position: relative;
+}
+ul li::before {
+  content: "✔";
+  color: #00a86b;
+  font-weight: bold;
+  position: absolute;
+  left: 0;
+}
+
+/* ===== BOTÓN INICIO ===== */
+#btn-iniciar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  font-size: 1.2rem;
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 auto 30px auto;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+#btn-iniciar:hover {
+  transform: scale(1.05);
+}
+
+/* ===== VIDEO ===== */
+.video-container {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.15);
+  margin-bottom: 40px;
+}
+video {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* ===== BOTÓN QUIZ ===== */
+.btn-quiz {
+  display: none;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: fit-content;
+  margin: 40px auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.btn-quiz:hover {
+  transform: scale(1.05);
+}
+
+/* ===== AGENTE ===== */
+.agente {
+  position: fixed;
+  bottom: 35px;
+  right: 25px;
+  width: 180px;
+  height: 180px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flotarSuave 4s ease-in-out infinite alternate;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0.1) 70%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+
+.agente img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25));
+  animation: parpadeo 6s infinite;
+}
+
+/* ===== IMAGEN EPP ===== */
+.imagen-epp {
+  text-align: center;
+  margin: 40px 0;
+}
+.imagen-epp img {
+  width: 100%;
+  max-width: 750px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+/* ===== PAUSAS ACTIVAS ===== */
+#pausas-activas {
+  background: #f1f8ff;
+  border-left: 6px solid #0d6efd;
+}
+.btn-descarga {
+  display: inline-block;
+  background: #0077c8;
+  color: white;
+  padding: 0.8rem 1.4rem;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.btn-descarga:hover {
+  background: #005fa3;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes flotarSuave {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+@keyframes parpadeo {
+  0%, 90%, 100% { filter: brightness(1); }
+  95% { filter: brightness(0.8); }
+}
+
+/* ===== RESPONSIVIDAD ===== */
+@media (max-width: 1024px) {
+  .agente { width: 150px; height: 150px; bottom: 25px; right: 20px; }
+}
+@media (max-width: 768px) {
+  header h1 { font-size: 1.6rem; }
+  main { margin: 20px auto; padding: 10px; }
+  section { padding: 20px; font-size: 0.95rem; }
+  .agente { width: 130px; height: 130px; bottom: 20px; right: 20px; }
+}
+@media (max-width: 480px) {
+  header h1 { font-size: 1.3rem; }
+  .agente { width: 110px; height: 110px; bottom: 15px; right: 15px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Módulo 3: Seguridad y Salud en el Trabajo (SST)</h1>
+</header>
+
+<main>
+  <button id="btn-iniciar" class="btn-iniciar">
+    <i class="fa-solid fa-arrow-right"></i> >> Click aquí para iniciar el módulo << </button>
+
+  <!-- Video principal -->
+  <div class="video-container">
+    <video controls>
+      <source src="videos/video_SST.mp4" type="video/mp4">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </div>
+
+ <!-- Información adicional -->
+<section id="info">
+  <h2>🩺 Medicina Preventiva y del Trabajo</h2>
+  <p>
+    Orientada por acciones de salud, se basa en la prevención y control de factores
+    causantes de enfermedad común y ocupacional.
+  </p>
+
+  <h3>Subprogramas</h3>
+  <ul>
+    <li>🧪 Exámenes y Evaluaciones Médicas</li>
+    <li>💉 Jornadas de Vacunación</li>
+    <li>🏃‍♀️ Capacitaciones en Estilos de Vida Saludable</li>
+    <li>📊 Sistemas de Vigilancia Epidemiológica: Ergonómico, Auditivo y Biológico</li>
+  </ul>
+
+  <h2>🦺 Seguridad Industrial</h2>
+  <p>Para factores de riesgo causantes de accidentes de trabajo:</p>
+  <ul>
+    <li>Inspecciones e Investigaciones</li>
+    <li>Orden y Aseo</li>
+    <li>Procedimientos Operativos por Tareas Críticas</li>
+    <li>Planes de emergencia</li>
+    <li>Mantenimiento (Equipos y Maquinaria)</li>
+    <li>Hojas de Seguridad</li>
+  </ul>
+
+  <h2>🧴 Higiene Industrial</h2>
+  <p>Para factores de riesgo causantes de Enfermedad Laboral:</p>
+  <h3>Subprogramas</h3>
+  <ul>
+    <li>Mediciones Ambientales y Ocupacionales</li>
+    <li>Ruido</li>
+    <li>Iluminación</li>
+    <li>Ergonómicas</li>
+  </ul>
+  <li>Contamos con Nuestra ARL - Equidad Seguros</li>
+
+  <!-- Imagen de Emermédica -->
+  <div style="text-align:center; margin-top:30px;">
+    <img src="images/emermedica.jpeg" alt="Emermédica - Medicina Preventiva" 
+         style="max-width:400px; width:80%; border-radius:12px; box-shadow:0 4px 10px rgba(0,0,0,0.15);" 
+         loading="lazy">
+  </div>
+</section>
+
+  <!-- Nueva sección: Factores de Riesgo -->
+<section id="riesgos">
+  <h2>⚠️ Factores de Riesgo Laboral</h2>
+  <p>Los siguientes factores de riesgo aplican de manera general a todos los cargos de la empresa, incluyendo personal administrativo, operativo, de mantenimiento y de servicios generales.</p>
+  <ul>
+    <li><strong>CONDICIONES DE SEGURIDAD (LOCATIVAS):</strong> Riesgo de caídas a distinto o mismo nivel (escaleras, sillas, superficies irregulares) y condiciones del entorno físico de trabajo.</li>
+    <li><strong>PSICOSOCIALES:</strong> Factores derivados de la organización y carga laboral, tales como trabajo repetitivo, monotonía, altos ritmos de trabajo, turnos, sobretiempos, responsabilidades y relaciones interpersonales.</li>
+    <li><strong>BIOMECÁNICOS:</strong> Posturas prolongadas o inadecuadas, levantamiento y transporte de cargas, movimientos manuales con esfuerzo o fuera del ángulo de confort.</li>
+    <li><strong>FÍSICOS:</strong> Exposición a ruido, variaciones de temperatura, iluminación inadecuada o vibraciones.</li>
+    <li><strong>QUÍMICOS:</strong> Contacto o exposición a aerosoles sólidos (polvos orgánicos o inorgánicos, humos, fibras), gases o vapores presentes en el entorno laboral.</li>
+    <li><strong>BIOLÓGICOS:</strong> Exposición a microorganismos (bacterias, virus, hongos) derivados de las condiciones del trabajo o del ambiente.</li>
+    <li><strong>ELÉCTRICOS:</strong> Riesgo de contacto con instalaciones o equipos eléctricos, especialmente en áreas de mantenimiento o servicio técnico.</li>
+    <li><strong>MECÁNICOS:</strong> Uso o manipulación de máquinas, herramientas o equipos con partes móviles o cortantes.</li>
+    <li><strong>RIESGO CRÍTICO:</strong> Actividades que implican tránsito vehicular o trabajos en altura.</li>
+    <li><strong>RIESGO PÚBLICO:</strong> Situaciones externas de delincuencia o desorden público durante desplazamientos o actividades laborales.</li>
+  </ul>
+</section>
+
+  <!-- Nueva sección: Deberes del Trabajador -->
+<section id="deberes">
+  <h2>🧾Responsabilidades del Trabajador Según la Normatividad Legal Vigente</h2>
+  <ul>
+    <li>Procurar el cuidado integral de su salud atendiendo las
+       recomendaciones y/o restricciones emitidas por el médico evaluador tanto en el ámbito intralaboral como en el extralaboral.</li>
+    <li>Suministrar información clara, veraz y completa sobre su estado de salud, paraclínicos, historias clínicas, recomendaciones o restricciones médicas, y los diagnósticos de las patologías que presente al momento de la realización de las evaluaciones médicas ocupacionales.</li>
+    <li>Cumplir las normas, reglamentos e instrucciones del Sistema de Gestión de la Seguridad y Salud en el Trabajo de la empresa, incluyendo el uso correcto de los elementos de protección personal que su trabajo amerite.</li>
+    <li>Informar oportunamente al empleador o contratante y al comité paritario de seguridad acerca de los peligros y riesgos latentes en su sitio de trabajo.</li>
+    <li>Asistir a las evaluaciones médicas ocupacionales programadas por el empleador dentro de la jornada laboral establecida; su incumplimiento acarreará sanciones de abuso del derecho conforme a la normatividad vigente.</li>
+    <li>Participar en las pausas activas durante la jornada laboral, programadas por el empleador en mejora de la salud física y mental, e informar al empleador objeciones de conciencia, credos, limitaciones en su estado de salud, posturas culturales o políticas que afecten la realización de las pausas.</li>
+    <li>Acatar las recomendaciones médico-laborales emitidas por el médico especialista en medicina del trabajo, salud ocupacional o seguridad y salud en el trabajo, tanto en el ámbito laboral como extralaboral.</li>
+    <li>Participar en las actividades de identificación de riesgos y prevención del consumo y/o trastornos mentales.</li>
+    <li>Participar en las estrategias para la prevención de problemas y/o trastornos mentales.</li>
+    <li>Participar en las actividades de capacitación en seguridad y salud en el trabajo definidas en el plan de capacitación del SGI.</li>
+    <li>Participar y contribuir al cumplimiento de los objetivos del SGI.</li>
+    <li>Administrar, gestionar y ajustar los procedimientos, protocolos, procesos y demás documentos que involucren el área.</li>
+    <li>Cumplir las normas, reglamentos e instrucciones del Sistema de Gestión de la Seguridad y Salud en el Trabajo de la empresa y las demás establecidas en el Decreto 1072 de 2015 y normas que lo modifiquen, sustituyan o adicionen.</li>
+  </ul>
+
+  <h3>🚦 Funciones y responsabilidades en Seguridad Vial</h3>
+  <ul>
+    <li>Reportar siniestros viales en desplazamientos laborales.</li>
+    <li>Participar en las capacitaciones de seguridad vial.</li>
+    <li>Cumplir la legislación y los lineamientos de seguridad vial de la organización.</li>
+  </ul>
+</section>
+
+  <!-- Sección: COPASST -->
+  <section id="copasst">
+    <h2>👥 Comité Paritario de Seguridad y Salud en el Trabajo (COPASST)</h2>
+    <p>
+      El <strong>COPASST</strong> es un organismo de promoción y vigilancia de las normas y 
+      reglamentos sobre seguridad y salud en el trabajo. Su objetivo es fomentar la participación 
+      de todos los trabajadores en la prevención de riesgos laborales.
+    </p>
+
+    <h3>¿Qué es?</h3>
+    <p>
+      Es un <strong>comité paritario</strong>, lo que significa que está conformado por partes iguales 
+      entre representantes de los <strong>empleadores</strong> y de los <strong>trabajadores</strong>.
+    </p>
+
+    <h3>¿Qué hace?</h3>
+    <ul>
+      <li>Investiga incidentes y accidentes de trabajo.</li>
+      <li>Realiza inspecciones de equipos, procesos e instalaciones.</li>
+      <li>Intermedia en temas relacionados con la <strong>medicina preventiva y del trabajo</strong>.</li>
+      <li>Propone medidas para la mejora continua de la seguridad y salud laboral.</li>
+    </ul>
+  </section>
+
+  <!-- Sección: Comité de Convivencia Laboral -->
+  <section id="convivencia">
+    <h2>🤝 Comité de Convivencia Laboral</h2>
+
+    <h3>¿Qué es?</h3>
+    <p>
+      Es un grupo de vigilancia cuya finalidad es contribuir a proteger a los trabajadores contra 
+      los riesgos psicosociales que puedan afectar la salud.
+    </p>
+
+    <h3>¿Qué objetivo persigue?</h3>
+    <ul>
+      <li>Promover un excelente ambiente de convivencia laboral.</li>
+      <li>Fomentar relaciones positivas entre los trabajadores de la empresa.</li>
+      <li>Respaldar la dignidad e integridad de las personas en el trabajo.</li>
+    </ul>
+
+    <h3>¿Quiénes lo conforman?</h3>
+    <p>Representantes de <strong>empleadores</strong> y <strong>empleados</strong> por igual.</p>
+  </section>
+
+  <!-- Nueva sección: Política de Acoso Laboral -->
+<section id="acoso-laboral">
+  <h2>⚖️ Acoso Laboral</h2>
+  <p><strong>LEY 1010 DE 2006:</strong> Acoso Laboral<br>
+    
+  <h3>Objeto</h3>
+  <p>
+    Definir, prevenir, corregir y sancionar las diversas formas de agresión, maltrato, vejámenes, 
+    trato desconsiderado y ofensivo, y en general todo ultraje a la dignidad humana que se ejercen 
+    sobre quienes realizan sus actividades en el contexto de una relación laboral privada o pública.
+  </p>
+
+  <p>
+    Toda conducta persistente y demostrable, ejercida sobre un empleado por parte de un empleador, 
+    jefe, superior jerárquico, compañero o subalterno, encaminada a infundir miedo, intimidación, 
+    terror o angustia; causar perjuicio laboral; generar desmotivación en el trabajo; o inducir 
+    la renuncia del mismo.
+  </p>
+
+  <h3>Modalidades</h3>
+  <ul>
+    <li><strong>Maltrato laboral:</strong> violencia física o verbal.</li>
+    <li><strong>Persecución laboral:</strong> actos reiterados o arbitrarios.</li>
+    <li><strong>Discriminación laboral:</strong> todo trato diferenciado por razones de raza, género, edad, origen familiar o nacional, discapacidad, credo religioso, preferencia política o situación social que carezca de toda razonabilidad desde el punto de vista laboral.</li>
+    <li><strong>Inequidad laboral:</strong> diferencias en funciones o remuneración.</li>
+    <li><strong>Entorpecimiento laboral:</strong> obstaculizar el desarrollo del trabajo.</li>
+    <li><strong>Desprotección laboral:</strong> impartir órdenes no adecuadas.</li>
+    <li><strong>Actos de irrespeto a la dignidad humana:</strong> comportamientos contrarios a la disciplina o subordinación laboral, al desempeño del trabajo, a la seguridad o a la salud ocupacional.</li>
+  </ul>
+
+  <h3>Ámbito de Aplicación</h3>
+  <p><strong>Se aplica a:</strong> Trabajadores del sector privado y público.</p>
+  <p><strong>No aplica a:</strong> Relaciones civiles o comerciales derivadas de contratos de prestación de servicios sin relación de jerarquía o subordinación, ni a contratación administrativa.</p>
+</section>
+
+  <!-- Imagen: Uso adecuado de los EPP -->
+  <div class="imagen-epp">
+    <h3>🧤 Uso Adecuado de los Elementos de Protección Personal (EPP)</h3>
+    <p>Recuerda utilizar correctamente los elementos de protección personal para prevenir accidentes y enfermedades laborales.</p>
+    <img src="images/uso_adecuado_epp.png" alt="Uso adecuado de los elementos de protección personal" loading="lazy">
+  </div>
+
+  <!-- Pausas Activas -->
+<section id="pausas-activas">
+  <h2>🧘‍♀️ Pausas Activas en la Jornada Laboral</h2>
+  <p>
+    Las pausas activas son breves descansos que se realizan durante la jornada laboral
+    para promover la salud física y mental, reducir el estrés y prevenir enfermedades
+    musculoesqueléticas.
+  </p>
+
+  <ul>
+    <li>Ayudan a mejorar la concentración y el estado de ánimo.</li>
+    <li>Previenen lesiones por esfuerzo repetitivo.</li>
+    <li>Reducen la fatiga visual y mental.</li>
+    <li>Favorecen la circulación y la postura.</li>
+  </ul>
+
+  <p>📘 Puedes descargar el instructivo completo aquí:</p>
+  <a href="docs/instructivo_pausas_activas.pdf" target="_blank" class="btn-descarga">⬇️ Descargar Instructivo de Pausas Activas</a>
+</section>
+
+  <a href="quiz_modulo3.html" class="btn-quiz" id="btn-quiz"> >> Finalizar Módulo y Realizar Quiz << </a>
+</main>
+
+<!-- 💬 Agente Inteligente -->
+<div class="agente">
+  <img src="logos/agente.png" alt="Agente IA">
+</div>
+
+<script>
+let vocesCargadas = [];
+
+function cargarVoces() {
+  return new Promise((resolve) => {
+    function obtenerVoces() {
+      vocesCargadas = speechSynthesis.getVoices();
+      if (vocesCargadas.length > 0) resolve(vocesCargadas);
+      else setTimeout(obtenerVoces, 200);
+    }
+    obtenerVoces();
+  });
+}
+
+function hablar(texto, callback = null) {
+  if (!("speechSynthesis" in window)) {
+    alert("Tu navegador no soporta texto a voz.");
+    return;
+  }
+
+  cargarVoces().then(() => {
+    let voz = vocesCargadas.find(v => v.lang === "es-CO") ||
+              vocesCargadas.find(v => v.lang === "es-MX") ||
+              vocesCargadas.find(v => v.lang.startsWith("es")) ||
+              vocesCargadas[0];
+    const mensaje = new SpeechSynthesisUtterance(texto);
+    if (voz) {
+      mensaje.voice = voz;
+      mensaje.lang = voz.lang;
+    }
+    mensaje.rate = 1.0;
+    mensaje.pitch = 1.0;
+    mensaje.volume = 1;
+    mensaje.onend = () => { if (callback) callback(); };
+    speechSynthesis.cancel();
+    speechSynthesis.speak(mensaje);
+  });
+}
+
+window.speechSynthesis.onvoiceschanged = () => {
+  vocesCargadas = speechSynthesis.getVoices();
+};
+
+document.getElementById("btn-iniciar").addEventListener("click", function() {
+  const btnQuiz = document.getElementById("btn-quiz");
+  const video = document.querySelector("video");
+  this.style.display = "none";
+
+  hablar("Bienvenido al módulo tres. Aquí conocerás las bases del Sistema de Gestión de Seguridad y Salud en el Trabajo, los factores de riesgo más comunes y las normas que te ayudan a mantenerte seguro y saludable. Observa con atención el video inicial.", () => {
+    video.play();
+  });
+
+  video.addEventListener("ended", function() {
+    const mensajes = [
+      "Medicina preventiva: protege tu salud en el trabajo.",
+      "Seguridad industrial: evita accidentes laborales.",
+      "Higiene industrial: cuida el ambiente de trabajo.",
+      "Factores de riesgo: identifica peligros comunes.",
+      "Deberes del trabajador: cumple las normas y usa protección.",
+      "Comité COPASST: promueve la prevención de riesgos.",
+      "Convivencia laboral: fomenta el respeto y bienestar.",
+      "Acoso laboral: la ley protege tu dignidad.",
+      "Excelente. Revisa el contenido y presenta el quiz para comprobar tu aprendizaje."
+    ];
+
+    function narrarSecuencia(i = 0) {
+      if (i < mensajes.length) {
+        hablar(mensajes[i], () => narrarSecuencia(i + 1));
+      } else {
+        btnQuiz.style.display = "block";
+
+        // ✅ Registrar módulo 3 como completado en localStorage
+        try {
+          let completados = JSON.parse(localStorage.getItem('modulosCompletados')) || [];
+          if (!completados.includes(3)) {
+            completados.push(3);
+            localStorage.setItem('modulosCompletados', JSON.stringify(completados));
+          }
+        } catch (error) {
+          console.error("Error guardando progreso:", error);
+        }
+      }
+    }
+
+    narrarSecuencia();
+  });
+});
+</script>
+
+
+
+
+

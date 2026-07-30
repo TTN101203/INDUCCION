@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Módulo 4 - Procedimientos Operativos Normalizados (PONS)</title>
+<style>
+/* ===== ESTILOS GENERALES ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* ===== ENCABEZADO ===== */
+header {
+  text-align: center;
+  padding: 40px 20px; 
+  background: linear-gradient(120deg, #0077c8, #00a86b);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===== CONTENIDO ===== */
+main {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* ===== SECCIONES ===== */
+section {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ===== TITULOS ===== */
+section h2 {
+  color: #0077c8;
+  border-left: 5px solid #00a86b;
+  padding-left: 10px;
+  margin-top: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+section h3 {
+  color: #00a86b;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ===== LISTAS ===== */
+ul, ol {
+  padding-left: 25px;
+}
+ul li, ol li {
+  margin-bottom: 10px;
+}
+
+/* ===== BOTÓN ===== */
+#btn-iniciar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  font-size: 1.2rem;
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 auto 30px auto;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+#btn-iniciar:hover {
+  transform: scale(1.05);
+}
+
+/* ===== BOTÓN QUIZ ===== */
+.btn-quiz {
+  display: none;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: fit-content;
+  margin: 40px auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.btn-quiz:hover {
+  transform: scale(1.05);
+}
+
+/* ===== AGENTE ===== */
+.agente {
+  position: fixed;
+  bottom: 35px;
+  right: 25px;
+  width: 180px;
+  height: 180px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flotarSuave 4s ease-in-out infinite alternate;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0.1) 70%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.agente img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25));
+  animation: parpadeo 6s infinite;
+}
+
+/* ===== PUNTOS DE ENCUENTRO ===== */
+.puntos-encuentro {
+  list-style-type: none;
+  padding-left: 0;
+}
+.puntos-encuentro li {
+  margin-bottom: 15px;
+}
+.punto-img {
+  display: block;
+  margin-top: 5px;
+  max-width: 200px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes flotarSuave {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+@keyframes parpadeo {
+  0%, 90%, 100% { filter: brightness(1); }
+  95% { filter: brightness(0.8); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  header h1 { font-size: 1.6rem; }
+  main { margin: 20px auto; padding: 10px; }
+  section { padding: 20px; font-size: 0.95rem; }
+  .agente { width: 130px; height: 130px; bottom: 20px; right: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Módulo 4: Emergencias</h1>
+</header>
+
+<main>
+  <button id="btn-iniciar"> >> Click aquí para iniciar el módulo << </button>
+
+  <!-- INTRODUCCIÓN -->
+  <section id="introduccion">
+    <h2>🆘 Introducción a Emergencias</h2>
+    <p>
+      Las <strong>emergencias</strong> son situaciones inesperadas que pueden poner en riesgo la vida, la salud, los bienes o el entorno. 
+      Conocer cómo actuar frente a ellas es fundamental para reducir sus consecuencias y proteger a todas las personas involucradas.
+    </p>
+    <p>
+      En el entorno laboral, cada trabajador debe mantener la calma, seguir los <strong>protocolos de emergencia</strong> y acatar las 
+      instrucciones del personal encargado. Una respuesta rápida, organizada y segura puede marcar la diferencia ante cualquier situación crítica.
+    </p>
+  </section>
+
+  <section id="Pons">
+  <h2>📘 ¿Qué son los PONS?</h2>
+  <p>
+    Los <strong>Procedimientos Operativos Normalizados (PONS)</strong> son documentos que describen de forma clara, 
+    ordenada y secuencial cómo deben ejecutarse las tareas o procesos dentro de la organización. Su finalidad es garantizar 
+    la calidad, la seguridad y la eficiencia de las operaciones, reduciendo errores y promoviendo un ambiente laboral seguro.
+  </p>
+  <p>
+    Aplicar los PONS asegura que todos los colaboradores sigan las mismas pautas, permitiendo mantener la uniformidad en los resultados 
+    y el cumplimiento de los requisitos legales y normativos.
+  </p>
+
+  <p style="margin-top: 15px;">
+    📎 <a href="docs/PONS_en_caso_de_emergencia.xlsx" download 
+    style="background-color: #007bff; color: white; padding: 10px 18px; border-radius: 8px; text-decoration: none; font-weight: 500;">
+      📥 Descargar PONS en caso de emergencia (Excel)
+    </a>
+  </p>
+</section>
+
+  <section id="brigadas">
+    <h2>🚒 Brigadas de Emergencia</h2>
+    <p>
+      Es el grupo de trabajo conformado por empleados voluntarios, distribuidos estratégicamente en los diferentes niveles y turnos de trabajo,
+      quienes reciben capacitación en primeros auxilios, técnicas bomberiles, salvamento y rescate. Además, tienen entrenamiento permanente
+      y cuentan con la coordinación de empleados. Son quienes llevan a cabo las acciones operativas en caso de emergencia.
+    </p>
+  </section>
+
+  <section id="emergencias">
+    <h2>🚨 Qué hacer en caso de un accidente laboral o incendio</h2>
+
+    <h3>🩹 Accidente Laboral</h3>
+    <ol>
+      <li>Detener labores inmediatamente.</li>
+      <li>Suspender la operación de equipos y herramientas involucradas en el accidente.</li>
+      <li>Prestar los primeros auxilios al lesionado.</li>
+      <li>Informar al responsable del área (supervisor, operador o HSEQ).</li>
+      <li>Si es necesario, trasladar al lesionado a la IPS más cercana.</li>
+      <li>Reportar e investigar el accidente.</li>
+    </ol>
+
+    <h3>🔥 Incendio</h3>
+    <ol>
+      <li>Analizar el tipo de incendio (Clase A: papel, madera; Clase B: gasolina; Clase C: eléctrico).</li>
+      <li>Evaluar si puede ser controlado de forma segura.</li>
+      <li>Usar agua, tierra o extintor multipropósito (ABC) según el tipo de fuego.</li>
+      <li>Si no puede controlarse, evacuar el área y dirigirse al punto de encuentro más cercano.</li>
+      <li>Reportar e investigar las causas del incendio.</li>
+      <li>Implementar acciones correctivas para evitar su repetición.</li>
+    </ol>
+  </section>
+
+  <section id="alarmas">
+    <h2>🏃‍♂️ Alarmas, Puntos de Encuentro y Protocolos de Accesibilidad</h2>
+    <p>
+      En caso de emergencia, todas las personas deben seguir los protocolos establecidos para garantizar una evacuación 
+      rápida, segura y ordenada.
+    </p>
+
+    <h3>🔔 Alarmas</h3>
+    <ul>
+      <li><strong>Sonido intermitente — Alerta:</strong> inspección preventiva.</li>
+      <li><strong>Sonido continuo — Evacuación inmediata:</strong> abandonar el área.</li>
+    </ul>
+
+    <h3>📍 Puntos de Encuentro</h3>
+    <ul class="puntos-encuentro">
+      <li><strong>1.</strong> Entrada oficinas administrativas, módulo Centenario.<br><img src="images/punto_1.png" class="punto-img"></li>
+      <li><strong>2.</strong> Plataforma de abordaje, módulo Centenario.<br><img src="images/punto_2.png" class="punto-img"></li>
+      <li><strong>3.</strong> Entrada principal del módulo Regional.<br><img src="images/punto_3.png" class="punto-img"></li>
+      <li><strong>4.</strong> Zona norte (Propiedad Horizontal).<br><img src="images/punto_4.png" class="punto-img"></li>
+    </ul>
+  </section>
+
+  <a href="quiz_modulo4.html" class="btn-quiz" id="btn-quiz"> >> Finalizar Módulo y Realizar Quiz << </a>
+</main>
+
+<!-- AGENTE -->
+<div class="agente">
+  <img src="logos/agente.png" alt="Agente IA">
+</div>
+
+<script>
+let voces = [];
+
+function cargarVoces() {
+  return new Promise((resolve) => {
+    function obtenerVoces() {
+      voces = speechSynthesis.getVoices();
+      if (voces.length > 0) resolve(voces);
+      else setTimeout(obtenerVoces, 200);
+    }
+    obtenerVoces();
+  });
+}
+
+function hablar(texto, callback = null) {
+  if (!("speechSynthesis" in window)) {
+    alert("Tu navegador no soporta texto a voz.");
+    return;
+  }
+
+  cargarVoces().then(() => {
+    const voz = voces.find(v => v.lang.startsWith("es")) || voces[0];
+    const mensaje = new SpeechSynthesisUtterance(texto);
+    mensaje.voice = voz;
+    mensaje.rate = 1;
+    mensaje.pitch = 1;
+    mensaje.volume = 1;
+    mensaje.onend = () => { if (callback) callback(); };
+    speechSynthesis.cancel();
+    speechSynthesis.speak(mensaje);
+  });
+}
+
+document.getElementById("btn-iniciar").addEventListener("click", function() {
+  const btnQuiz = document.getElementById("btn-quiz");
+  const btnIniciar = this;
+  btnIniciar.style.display = "none";
+
+  const texto = "Bienvenido al módulo cuatro, Procedimientos Operativos Normalizados. Aquí aprenderás sobre los PONS, las brigadas de emergencia, cómo actuar ante accidentes o incendios, y los protocolos de evacuación y accesibilidad. Al finalizar podrás realizar el quiz para evaluar tu aprendizaje.";
+
+  hablar(texto, () => {
+    btnQuiz.style.display = "block";
+    let completados = JSON.parse(localStorage.getItem('modulosCompletados')) || [];
+    if (!completados.includes(4)) {
+      completados.push(4);
+      localStorage.setItem('modulosCompletados', JSON.stringify(completados));
+    }
+  });
+});
+</script>
+</body>
+</html>

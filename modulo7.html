@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Módulo 7 - SARLAFT y PTEE</title>
+<style>
+/* ===== ESTILOS GENERALES ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* ===== ENCABEZADO ===== */
+header {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(120deg, #0077c8, #00a86b);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===== CONTENIDO ===== */
+main {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* ===== SECCIONES ===== */
+section {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ===== TITULOS ===== */
+section h2 {
+  color: #0077c8;
+  border-left: 5px solid #00a86b;
+  padding-left: 10px;
+  margin-top: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+section h3 {
+  color: #00a86b;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ===== LISTAS ===== */
+ul, ol {
+  padding-left: 25px;
+}
+ul li, ol li {
+  margin-bottom: 10px;
+}
+
+/* ===== BOTÓN ===== */
+#btn-iniciar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  font-size: 1.2rem;
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 auto 30px auto;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+#btn-iniciar:hover {
+  transform: scale(1.05);
+}
+
+/* ===== BOTÓN QUIZ ===== */
+.btn-quiz {
+  display: none;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: fit-content;
+  margin: 40px auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.btn-quiz:hover {
+  transform: scale(1.05);
+}
+
+/* ===== AGENTE ===== */
+.agente {
+  position: fixed;
+  bottom: 35px;
+  right: 25px;
+  width: 180px;
+  height: 180px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flotarSuave 4s ease-in-out infinite alternate;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0.1) 70%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.agente img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25));
+  animation: parpadeo 6s infinite;
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes flotarSuave {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+@keyframes parpadeo {
+  0%, 90%, 100% { filter: brightness(1); }
+  95% { filter: brightness(0.8); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  header h1 { font-size: 1.6rem; }
+  main { margin: 20px auto; padding: 10px; }
+  section { padding: 20px; font-size: 0.95rem; }
+  .agente { width: 130px; height: 130px; bottom: 20px; right: 20px; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Módulo 7: SARLAFT y Programa de Transparencia y Ética Empresarial – PTEE</h1>
+</header>
+
+<main>
+  <button id="btn-iniciar"> >> Click aquí para iniciar el módulo << </button>
+
+  <!-- SARLAFT -->
+  <section id="sarlaft">
+    <h2>🛡️ ¿Qué es el SARLAFT?</h2>
+    <p>
+      SARLAFT es el Sistema de Administración de Riesgos de Lavado de Activos, Financiación del Terrorismo y
+      Financiamiento de la Proliferación de Armas de Destrucción Masiva. Es un mecanismo que permite a las
+      entidades prevenir la pérdida o el daño que pueden sufrir por su propensión a ser utilizadas como
+      instrumento para el lavado de activos y/o la canalización de recursos hacia la realización de
+      actividades terroristas, por parte de sus clientes o usuarios.
+    </p>
+  </section>
+
+  <!-- PTEE -->
+  <section id="ptee">
+    <h2>🤝 ¿Qué es el Programa de Transparencia y Ética Empresarial – PTEE?</h2>
+    <p>
+      El PTEE es el instrumento que integra el conjunto de políticas, lineamientos, mecanismos y herramientas
+      con los que cuentan los sujetos obligados, para identificar, detectar, prevenir, gestionar y mitigar
+      los riesgos de corrupción a los que pueda estar expuesta la organización.
+    </p>
+  </section>
+
+  <!-- IMPORTANCIA -->
+  <section id="importancia">
+    <h2>🎯 ¿Por qué son importantes estos sistemas?</h2>
+    <p>El Terminal de Transportes de Neiva implementa estos sistemas con el propósito de:</p>
+    <ul>
+      <li>Prevenir que la organización sea utilizada para actividades ilícitas.</li>
+      <li>Promover una cultura de transparencia y comportamiento ético.</li>
+      <li>Fortalecer la confianza de usuarios, proveedores, contratistas y demás grupos de interés.</li>
+      <li>Cumplir la normatividad vigente y los principios de buen gobierno corporativo.</li>
+      <li>Proteger la reputación, los recursos y la continuidad de la organización.</li>
+    </ul>
+  </section>
+
+  <!-- RIESGOS -->
+  <section id="riesgos">
+    <h2>⚠️ Riesgos que busca prevenir la organización</h2>
+    <p>Los colaboradores deben conocer que la organización trabaja para prevenir riesgos relacionados con:</p>
+    <ul>
+      <li>Lavado de Activos (LA).</li>
+      <li>Financiación del Terrorismo (FT).</li>
+      <li>Financiamiento de la Proliferación de Armas de Destrucción Masiva (FPADM).</li>
+      <li>Corrupción.</li>
+      <li>Soborno.</li>
+      <li>Fraude.</li>
+      <li>Conflictos de interés.</li>
+    </ul>
+  </section>
+
+  <!-- RESPONSABILIDADES -->
+  <section id="responsabilidades">
+    <h2>👤 Responsabilidades de los colaboradores</h2>
+    <p>Todos los trabajadores, contratistas y demás personas que actúen en nombre de la organización deben:</p>
+    <ul>
+      <li>Actuar con honestidad, transparencia e integridad.</li>
+      <li>Cumplir las políticas, procedimientos y controles establecidos por la organización.</li>
+      <li>Suministrar información veraz cuando sea requerida.</li>
+      <li>Proteger la información institucional y la información de terceros.</li>
+      <li>Informar oportunamente cualquier situación inusual o sospechosa.</li>
+      <li>Abstenerse de participar en actividades que puedan favorecer actos de corrupción, fraude o lavado de activos.</li>
+    </ul>
+  </section>
+
+  <!-- SEÑALES DE ALERTA -->
+  <section id="senales">
+    <h2>🚩 Señales de alerta</h2>
+    <p>Algunas situaciones que pueden representar un riesgo son:</p>
+    <ul>
+      <li>Personas que se niegan a entregar la información requerida.</li>
+      <li>Presentación de documentos con inconsistencias o posibles alteraciones.</li>
+      <li>Solicitudes de pagos o transacciones inusuales.</li>
+      <li>Ofrecimiento de regalos, dinero, favores o beneficios para obtener ventajas indebidas.</li>
+      <li>Uso inadecuado de información confidencial.</li>
+      <li>Comportamientos que puedan afectar la transparencia de la organización.</li>
+    </ul>
+  </section>
+
+  <!-- POLÍTICA -->
+  <section id="politica">
+    <h2>⚖️ Política de Transparencia y Ética</h2>
+    <p>El Terminal de Transportes mantiene una política de cero tolerancia frente a:</p>
+    <ul>
+      <li>Corrupción.</li>
+      <li>Soborno.</li>
+      <li>Fraude.</li>
+      <li>Lavado de activos.</li>
+      <li>Financiación del terrorismo.</li>
+      <li>Financiamiento de la proliferación de armas de destrucción masiva.</li>
+      <li>Cualquier conducta contraria a la ley, la ética o los principios institucionales.</li>
+    </ul>
+    <p>
+      Todos los colaboradores deberán actuar conforme a los principios de legalidad, transparencia,
+      responsabilidad, imparcialidad y respeto.
+    </p>
+  </section>
+
+  <!-- QUÉ HACER -->
+  <section id="quehacer">
+    <h2>📢 ¿Qué hacer si identifica una situación sospechosa?</h2>
+    <p>Si un colaborador identifica una situación que pueda representar un riesgo para la organización deberá:</p>
+    <ol>
+      <li>No participar en la conducta.</li>
+      <li>Conservar la información o evidencia disponible.</li>
+      <li>Informar oportunamente a través de los canales definidos por la organización o al Oficial de Cumplimiento.</li>
+      <li>Mantener la confidencialidad del reporte.</li>
+      <li>Colaborar con las investigaciones que se adelanten.</li>
+    </ol>
+    <p>
+      La organización garantiza que los reportes realizados de buena fe serán tratados con la debida
+      reserva y confidencialidad.
+    </p>
+  </section>
+
+  <!-- CONSECUENCIAS -->
+  <section id="consecuencias">
+    <h2>🚫 Consecuencias del incumplimiento</h2>
+    <p>El incumplimiento de las políticas y procedimientos relacionados con el SARLAFT y el PTEE podrá dar lugar a:</p>
+    <ul>
+      <li>Medidas disciplinarias.</li>
+      <li>Investigaciones internas.</li>
+      <li>Terminación del vínculo laboral o contractual, cuando corresponda.</li>
+      <li>Responsabilidades civiles, administrativas o penales de conformidad con la legislación vigente.</li>
+    </ul>
+  </section>
+
+  <!-- COMPROMISO -->
+  <section id="compromiso">
+    <h2>✅ Compromiso del colaborador</h2>
+    <p>Como colaborador del Terminal de Transportes, me comprometo a:</p>
+    <ul>
+      <li>Actuar con ética e integridad en el desarrollo de mis funciones.</li>
+      <li>Cumplir las políticas y procedimientos institucionales.</li>
+      <li>Reportar cualquier situación sospechosa o irregular.</li>
+      <li>Proteger la información y los bienes de la organización.</li>
+      <li>Contribuir al fortalecimiento de una cultura de transparencia, legalidad y cumplimiento.</li>
+    </ul>
+    <p>
+      El cumplimiento del SARLAFT y del Programa de Transparencia y Ética Empresarial es responsabilidad de
+      todos y constituye un elemento fundamental para proteger la reputación, sostenibilidad y confianza en
+      el Terminal de Transportes.
+    </p>
+  </section>
+
+  <a href="quiz_modulo7.html" class="btn-quiz" id="btn-quiz"> >> Finalizar Módulo y Realizar Quiz << </a>
+</main>
+
+<!-- AGENTE -->
+<div class="agente" aria-hidden="true">
+  <img src="logos/agente.png" alt="Agente IA">
+</div>
+
+<script>
+let voces = [];
+
+function cargarVoces() {
+  return new Promise((resolve) => {
+    function obtenerVoces() {
+      voces = speechSynthesis.getVoices();
+      if (voces.length > 0) resolve(voces);
+      else setTimeout(obtenerVoces, 200);
+    }
+    obtenerVoces();
+  });
+}
+
+function hablar(texto, callback = null) {
+  if (!("speechSynthesis" in window)) {
+    alert("Tu navegador no soporta texto a voz.");
+    if (callback) callback();
+    return;
+  }
+
+  cargarVoces().then(() => {
+    const voz = voces.find(v => v.lang && v.lang.startsWith("es")) || voces[0];
+    const mensaje = new SpeechSynthesisUtterance(texto);
+    if (voz) mensaje.voice = voz;
+    mensaje.lang = (voz && voz.lang) ? voz.lang : 'es-ES';
+    mensaje.rate = 1;
+    mensaje.pitch = 1;
+    mensaje.volume = 1;
+    mensaje.onend = () => { if (callback) callback(); };
+    speechSynthesis.cancel();
+    speechSynthesis.speak(mensaje);
+  });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const btnQuiz = document.getElementById("btn-quiz");
+  const btnIniciar = document.getElementById("btn-iniciar");
+
+  // ✅ Mostrar quiz si ya se completó antes
+  let completados = JSON.parse(localStorage.getItem("modulosCompletados")) || [];
+  if (completados.includes(7)) {
+    btnQuiz.style.display = "block";
+    btnIniciar.style.display = "none";
+  }
+
+  btnIniciar.addEventListener("click", function() {
+    btnIniciar.style.display = "none";
+
+    const texto = "Bienvenido al módulo siete, SARLAFT y Programa de Transparencia y Ética Empresarial. Aquí conocerás qué es el SARLAFT y el PTEE, por qué son importantes para el Terminal de Transportes de Neiva, los riesgos que buscan prevenir como el lavado de activos, la financiación del terrorismo, la corrupción, el soborno y el fraude, tus responsabilidades como colaborador, las señales de alerta que debes identificar, la política de cero tolerancia de la organización, los pasos a seguir si detectas una situación sospechosa y las consecuencias del incumplimiento. Lee detenidamente cada sección. Cuando termine la explicación, aparecerá el botón para pasar al quiz y evaluar tu aprendizaje. ¡Actuemos siempre con transparencia e integridad!";
+
+    hablar(texto, () => {
+      // Mostrar botón del quiz cuando termine la narración
+      btnQuiz.style.display = "block";
+
+      // Guardar progreso del módulo 7
+      let completados = JSON.parse(localStorage.getItem('modulosCompletados')) || [];
+      if (!completados.includes(7)) {
+        completados.push(7);
+        localStorage.setItem('modulosCompletados', JSON.stringify(completados));
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

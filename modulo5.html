@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content="Módulo 5 - Gestión Ambiental: residuos, plagas, energía, agua, impactos y SGA.">
+<title>Módulo 5 - Gestión Ambiental</title>
+<style>
+/* ===== ESTILOS GENERALES ===== */
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f4f6f9;
+  margin: 0;
+  padding: 0;
+  color: #1a1a1a;
+  line-height: 1.6;
+}
+
+/* ===== ENCABEZADO ===== */
+header {
+  text-align: center;
+  padding: 40px 20px;
+  background: linear-gradient(120deg, #0077c8, #00a86b);
+  color: white;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  border-bottom-left-radius: 25px;
+  border-bottom-right-radius: 25px;
+}
+header h1 {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+/* ===== CONTENIDO ===== */
+main {
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+/* ===== SECCIONES ===== */
+section {
+  background: #ffffff;
+  padding: 30px 25px;
+  border-radius: 20px;
+  box-shadow: 0 6px 25px rgba(0,0,0,0.07);
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* ===== TITULOS ===== */
+section h2 {
+  color: #0077c8;
+  border-left: 5px solid #00a86b;
+  padding-left: 10px;
+  margin-top: 0;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+section h3 {
+  color: #00a86b;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ===== LISTAS ===== */
+ul, ol {
+  padding-left: 25px;
+}
+ul li, ol li {
+  margin-bottom: 10px;
+}
+
+/* ===== BOTÓN ===== */
+#btn-iniciar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  font-size: 1.2rem;
+  padding: 16px 40px;
+  border-radius: 50px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 0 auto 30px auto;
+  transition: 0.3s;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+#btn-iniciar:hover {
+  transform: scale(1.05);
+}
+
+/* ===== BOTÓN QUIZ ===== */
+.btn-quiz {
+  display: none;
+  background: linear-gradient(90deg, #0077c8, #00a86b);
+  color: white;
+  padding: 16px 40px;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  width: fit-content;
+  margin: 40px auto;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  transition: all 0.3s ease;
+}
+.btn-quiz:hover {
+  transform: scale(1.05);
+}
+
+/* ===== AGENTE ===== */
+.agente {
+  position: fixed;
+  bottom: 35px;
+  right: 25px;
+  width: 180px;
+  height: 180px;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: flotarSuave 4s ease-in-out infinite alternate;
+  border-radius: 50%;
+  background: radial-gradient(circle at center, rgba(255,255,255,0.5) 45%, rgba(255,255,255,0.1) 70%);
+  box-shadow: 0 0 20px rgba(0,0,0,0.2);
+}
+.agente img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 15px rgba(0,0,0,0.25));
+  animation: parpadeo 6s infinite;
+}
+
+/* ===== CANECAS ===== */
+.contenedor-canecas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.caneca {
+  width: 200px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.caneca:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.caneca img {
+  width: 100%;
+  max-width: 130px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+}
+
+.caneca p {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* ===== USO EFICIENTE DE LOS RECURSOS ===== */
+.contenedor-recursos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.recurso {
+  width: 200px;
+  text-align: center;
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recurso:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.recurso img {
+  width: 100%;
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.recurso h3 {
+  color: #2e7d32;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.recurso p {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+/* ===== IMPACTOS AMBIENTALES ===== */
+.contenedor-impactos {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.impacto {
+  width: 220px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.impacto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+}
+
+.impacto img {
+  width: 100%;
+  max-width: 100px;
+  margin-bottom: 10px;
+}
+
+.impacto h3 {
+  color: #1b5e20;
+  font-size: 1.1rem;
+  margin-bottom: 5px;
+}
+
+.impacto p {
+  font-size: 0.9rem;
+  color: #333;
+}
+
+.mensaje-impacto {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 1rem;
+  color: #2e7d32;
+  font-weight: 500;
+}
+
+/* Sección de Energía */
+#energia {
+  background-color: #f9fbf9;
+  border-left: 5px solid #4caf50;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+#energia h2 {
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+#energia p {
+  text-align: justify;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Galería de imágenes */
+.galeria-energia {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.galeria-energia img {
+  width: 30%;
+  min-width: 250px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galeria-energia img:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.25);
+}
+
+/* ===== PLAGAS (unificada) ===== */
+#plagas {
+  background-color: #fffef9;
+  border-left: 5px solid #ffb74d;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+#plagas h2 {
+  color: #ef6c00;
+  font-weight: 700;
+}
+
+#plagas p {
+  text-align: justify;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Tarjetas visuales (control de cebaderas, fumigación, comején) */
+.contenedor-plagas {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.tarjeta-plaga {
+  background: #ffffff;
+  width: 280px;
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tarjeta-plaga:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+.tarjeta-plaga img {
+  width: 100%;
+  max-width: 120px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.tarjeta-plaga h3 {
+  color: #ef6c00;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+
+.tarjeta-plaga p {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.mensaje-plagas {
+  text-align: center;
+  font-size: 1rem;
+  color: #ef6c00;
+  font-weight: 600;
+  margin-top: 18px;
+}
+
+/* Sección de Residuos */
+#residuos {
+  background-color: #f7fff9;
+  border-left: 5px solid #43a047;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+#residuos h2 {
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+#residuos p {
+  text-align: justify;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Bloque de compostera */
+.bloque-compostera {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 25px;
+  margin-top: 25px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.bloque-compostera img {
+  width: 320px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.texto-compostera {
+  flex: 1;
+  min-width: 250px;
+}
+
+.texto-compostera h3 {
+  color: #388e3c;
+  margin-bottom: 10px;
+}
+
+.texto-compostera p {
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Bloque resultado de energía */
+.resultado-energia {
+  margin-top: 30px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  text-align: center;
+}
+
+.resultado-energia h3 {
+  color: #2e7d32;
+  margin-bottom: 15px;
+}
+
+.resultado-energia img {
+  width: 90%;
+  max-width: 800px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.resultado-energia img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.resultado-energia p {
+  color: #333;
+  line-height: 1.6;
+  text-align: justify;
+  margin-top: 10px;
+}
+
+/* Sección SGA */
+#sga {
+  background-color: #f9f9ff;
+  border-left: 5px solid #3f51b5;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 30px;
+}
+
+#sga h2 {
+  color: #283593;
+  font-weight: 700;
+}
+
+#sga p {
+  text-align: justify;
+  line-height: 1.6;
+  color: #333;
+}
+
+/* Imagen única del SGA */
+.imagen-sga {
+  text-align: center;
+  margin: 25px 0;
+}
+
+.imagen-sga img {
+  width: 90%;
+  max-width: 700px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imagen-sga img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+/* Información adicional */
+.sga-info {
+  background: #ffffff;
+  padding: 15px 20px;
+  border-radius: 10px;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.sga-info p {
+  margin: 5px 0;
+}
+
+/* Mensaje final */
+.mensaje-final-sga {
+  text-align: center;
+  font-size: 1rem;
+  color: #283593;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.imagen-raee {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.imagen-raee img {
+  width: 90%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.imagen-raee img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+/* ===== ANIMACIONES ===== */
+@keyframes flotarSuave {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+  100% { transform: translateY(0); }
+}
+@keyframes parpadeo {
+  0%, 90%, 100% { filter: brightness(1); }
+  95% { filter: brightness(0.8); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  header h1 { font-size: 1.6rem; }
+  main { margin: 20px auto; padding: 10px; }
+  section { padding: 20px; font-size: 0.95rem; }
+  .agente { width: 130px; height: 130px; bottom: 20px; right: 20px; }
+  .galeria-energia img, .tarjeta-plaga {
+    width: 100%;
+    min-width: 0;
+  }
+  .bloque-compostera {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .bloque-compostera img {
+    width: 100%;
+    max-width: 420px;
+  }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Módulo 5: Gestión Ambiental</h1>
+</header>
+
+<main role="main" aria-label="Contenido principal del módulo 5">
+  <button id="btn-iniciar"> >> Click aquí para iniciar el módulo << </button>
+
+  <!-- INTRODUCCIÓN -->
+  <section id="introduccion">
+    <h2>🌿 Introducción a la Gestión Ambiental</h2>
+    <p>
+      La gestión ambiental es un pilar esencial para alcanzar el equilibrio entre el desarrollo organizacional y la preservación del entorno natural.
+      A través de estrategias sostenibles y programas integrales, buscamos reducir los impactos ambientales derivados de nuestras actividades, optimizando
+      el uso de los recursos y fomentando una cultura ecológica en todos los niveles de la organización.
+    </p>
+    <p>
+      Este compromiso va más allá del cumplimiento normativo: representa una apuesta por la innovación, la eficiencia y la mejora continua.
+      Implementar una gestión ambiental efectiva nos permite transformar los desafíos ecológicos en oportunidades para construir un futuro
+      más limpio, responsable y sostenible.
+    </p>
+  </section>
+
+  <!-- RESIDUOS (versión unificada con compostera) -->
+  <section id="residuos">
+    <h2>♻️ Programa de Gestión Integrado de Residuos</h2>
+    <p>
+      El <strong>Programa de Gestión Integrada de Residuos</strong> busca promover el manejo adecuado de los desechos generados en la organización,
+      garantizando la separación en la fuente, el aprovechamiento de materiales reciclables y la disposición final responsable.
+      Este programa contribuye directamente a la protección del medio ambiente, la salud pública y el cumplimiento normativo.
+    </p>
+
+    <p>
+      Dentro del programa se promueve el reciclaje de materiales como papel, cartón, plástico, vidrio y metales, alcanzando
+      un promedio anual de <strong>15.000 kg de residuos reciclados</strong>. Asimismo, se gestionan los <strong>Residuos de Aparatos
+      Eléctricos y Electrónicos (RAEE)</strong> y los residuos orgánicos mediante procesos de valorización ambiental.
+    </p>
+
+    <!-- Bloque Compostera -->
+    <div class="bloque-compostera" aria-label="Compostera fotovoltaica">
+      <img src="images/compostera.png" alt="Sistema de compostaje móvil inteligente fotovoltaico" loading="lazy">
+      <div class="texto-compostera">
+        <h3>🌱 Sistema de Compostaje Móvil Inteligente</h3>
+        <p>
+          En el año 2023 adquirimos, junto con la empresa huilense <strong>GOLDEN ALBA</strong>, un
+          <strong>sistema de compostaje móvil inteligente fotovoltaico</strong>, como muestra de nuestro compromiso con el
+          medio ambiente y el desarrollo sostenible.
+        </p>
+        <p>
+          Este sistema cuenta con la capacidad de procesar aproximadamente <strong>1.5 toneladas de residuos orgánicos al mes</strong>,
+          funcionando completamente a base de <strong>energía solar</strong>. Gracias a esta innovación, contribuimos de manera
+          significativa a la <strong>reducción de la huella de carbono</strong> y a la minimización de los residuos generados
+          en nuestro entorno.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMA UNIFICADO DE CONTROL DE PLAGAS -->
+  <section id="plagas">
+    <h2>🐛 Programa de Control de Plagas</h2>
+
+    <p>
+      El <strong>Programa de Control de Plagas</strong> tiene como propósito prevenir, controlar y eliminar la presencia de organismos
+      que puedan afectar la salud, la inocuidad, la infraestructura o el entorno de trabajo. Su ejecución se desarrolla bajo
+      criterios de sostenibilidad, minimizando el uso de productos químicos y priorizando métodos ecológicos y preventivos.
+    </p>
+
+    <h3>🔹 Medidas preventivas y monitoreo</h3>
+    <ul>
+      <li>Mantener las áreas limpias, libres de restos de alimentos y basuras acumuladas.</li>
+      <li>Evitar dejar puertas y ventanas abiertas innecesariamente; sellar accesos potenciales.</li>
+      <li>Revisar y mantener limpios los puntos con humedad y almacenamiento de insumos.</li>
+      <li>Implementación de <strong>cebaderas de monitoreo</strong> en puntos estratégicos para detección temprana.</li>
+    </ul>
+
+    <h3>🔹 Intervenciones programadas y manejo responsable</h3>
+    <p>
+      Se realizan <strong>dos fumigaciones al año</strong> como mínimo, o con mayor frecuencia si las condiciones lo requieren.
+      Las fumigaciones y tratamientos contra plagas (incluido control de comején) deben ser ejecutados por personal especializado,
+      con productos certificados y registro detallado de cada intervención (sustancia, dosis, área, fecha y responsable).
+    </p>
+
+    <div class="contenedor-plagas">
+      <div class="tarjeta-plaga">
+        <img src="images/cebaderas.png" alt="Cebaderas de monitoreo" loading="lazy">
+        <h3>Control de Cebaderas</h3>
+        <p>Inspección y monitoreo con cebaderas ecológicas para detectar actividad de plagas sin impacto ambiental innecesario.</p>
+      </div>
+
+      <div class="tarjeta-plaga">
+        <img src="images/fumigacion.png" alt="Fumigación controlada" loading="lazy">
+        <h3>Fumigaciones Programadas</h3>
+        <p>Dos fumigaciones anuales como estándar; ejecución anticipada si la situación lo exige. Protocolos y zonas restringidas durante el proceso.</p>
+      </div>
+
+      <div class="tarjeta-plaga">
+        <img src="images/comejen.png" alt="Control de comején" loading="lazy">
+        <h3>Control de Comején</h3>
+        <p>Tratamientos focalizados y preventivos para comején, protegiendo la estructura y minimizando daños a la infraestructura.</p>
+      </div>
+    </div>
+
+    <p class="mensaje-plagas">
+      🪴 <em>El control adecuado de plagas protege la salud, la infraestructura y contribuye a la sostenibilidad operacional.</em>
+    </p>
+  </section>
+
+  <!-- PROGRAMA DE USO EFICIENTE Y RACIONAL DE ENERGÍA -->
+<section id="energia">
+  <h2>⚡ Programa de Uso Eficiente y Racional de Energía</h2>
+  <p>
+    Este programa busca optimizar el consumo energético de la organización, promoviendo el uso responsable de la electricidad y la
+    implementación de tecnologías limpias que reduzcan la huella de carbono. Su objetivo principal es disminuir el impacto ambiental
+    asociado a la generación y uso de energía.
+  </p>
+  <p>
+    Como parte de las estrategias implementadas, se han incorporado sistemas de energía renovable, incluyendo la instalación de
+    <strong>paneles solares</strong> que permiten el aprovechamiento sostenible de la radiación solar, reduciendo el consumo de fuentes
+    convencionales. Asimismo, se fomenta el apagado de equipos no esenciales, la iluminación eficiente y la capacitación del personal en
+    prácticas de ahorro energético.
+  </p>
+
+  <!-- Galería de imágenes -->
+  <div class="galeria-energia">
+    <img src="images/panel_solar_1.png" alt="Panel solar en funcionamiento" loading="lazy">
+    <img src="images/panel_solar_2.png" alt="Instalación de paneles solares" loading="lazy">
+    <img src="images/panel_solar_3.png" alt="Sistema fotovoltaico en la organización" loading="lazy">
+  </div>
+
+  <!-- Imagen de resultado -->
+  <div class="resultado-energia">
+    <h3>🔆 Resultados del Sistema Fotovoltaico</h3>
+    <img src="images/resultado_paneles.jpeg" alt="Resultados del sistema de paneles solares" loading="lazy">
+    <p>
+      La implementación del sistema de paneles solares representa un avance significativo hacia la autosuficiencia energética
+      y la reducción del impacto ambiental. Este logro refuerza el compromiso institucional con la sostenibilidad y la transición
+      hacia un modelo energético más limpio y eficiente.
+    </p>
+  </div>
+
+  <!-- Imagen RAEE -->
+  <div class="imagen-raee">
+    <img src="images/raee.png" alt="Gestión de RAEE" loading="lazy">
+  </div>
+</section>
+
+  <!-- PROGRAMA DE USO EFICIENTE Y RACIONAL DE AGUA -->
+  <section id="agua">
+    <h2>💧 Programa de Uso Eficiente y Racional de Agua</h2>
+    <p>
+      Este programa tiene como propósito garantizar un uso consciente, responsable y sostenible del recurso hídrico dentro de la organización.
+      Se promueve la reducción del consumo, la reutilización y el aprovechamiento eficiente del agua en todas las áreas operativas y administrativas.
+    </p>
+    <p>
+      Entre las acciones implementadas se incluyen la instalación de dispositivos ahorradores, la detección temprana de fugas, campañas de sensibilización
+      para el personal y la gestión responsable del agua lluvia. Estas medidas buscan preservar el recurso y contribuir a la protección de los ecosistemas
+      asociados al ciclo hídrico.
+    </p>
+  </section>
+
+  <!-- IMPACTOS Y BUENAS PRACTICAS -->
+  <section id="impactos">
+    <h2>🌎 Impactos ambientales</h2>
+    <p>
+      Todas las actividades humanas generan algún tipo de impacto sobre el ambiente. 
+      Identificar, prevenir y mitigar estos impactos permite reducir riesgos y cumplir con los compromisos de sostenibilidad de la empresa.
+    </p>
+
+    <div class="contenedor-impactos">
+      <div class="impacto">
+        <img src="images/contaminacion.png" alt="Contaminación ambiental" loading="lazy">
+        <h3>Contaminación</h3>
+        <p>Provocada por derrames, emisiones, o manejo inadecuado de residuos. Afecta el aire, el agua y el suelo.</p>
+      </div>
+
+      <div class="impacto">
+        <img src="images/consumo.png" alt="Consumo excesivo de recursos" loading="lazy">
+        <h3>Consumo excesivo</h3>
+        <p>El uso ineficiente de agua, energía o materiales genera un mayor impacto ambiental y costos operativos.</p>
+      </div>
+
+      <div class="impacto">
+        <img src="images/ruido.png" alt="Ruido y contaminación auditiva" loading="lazy">
+        <h3>Ruido</h3>
+        <p>El exceso de ruido en los procesos puede afectar la salud de las personas y la fauna cercana.</p>
+      </div>
+
+      <div class="impacto">
+        <img src="images/flora_fauna.png" alt="Afectación de flora y fauna" loading="lazy">
+        <h3>Daño a la flora y fauna</h3>
+        <p>La tala, vertimientos o residuos en lugares no permitidos alteran ecosistemas y ponen en riesgo especies.</p>
+      </div>
+    </div>
+
+    <p class="mensaje-impacto">
+      🌱 <em>Recuerda: cada trabajador puede prevenir los impactos ambientales siguiendo las buenas prácticas y reportando cualquier situación anormal.</em>
+    </p>
+  </section>
+
+  <!-- PLAN MANEJO -->
+  <section id="plan">
+    <h2>🗂️ Plan de Manejo Ambiental</h2>
+    <p>
+      El plan de manejo ambiental incluye acciones preventivas, responsables de ejecución y controles para reducir impactos.
+      Cada trabajador tiene un rol: cumplir procedimientos, reportar incidentes y participar en campañas de formación.
+    </p>
+  </section>
+
+  <!-- SGA (imagen única) -->
+  <section id="sga">
+    <h2>🧪 Sistema Globalmente Armonizado (SGA)</h2>
+    <p>
+      El <strong>Sistema Globalmente Armonizado de Clasificación y Etiquetado de Productos Químicos (SGA)</strong>
+      tiene como objetivo comunicar de manera clara los peligros asociados al uso de sustancias químicas, garantizando
+      que los trabajadores comprendan los riesgos y adopten medidas seguras para su manejo, almacenamiento y transporte.
+    </p>
+
+    <!-- Imagen única -->
+    <div class="imagen-sga">
+      <img src="images/pictograma.png" alt="Pictogramas del Sistema Globalmente Armonizado" loading="lazy">
+    </div>
+
+    <div class="sga-info">
+      <p>🔹 <strong>Recuerda:</strong> Antes de manipular cualquier sustancia química, verifica su etiqueta y ficha de seguridad (MSDS).</p>
+      <p>🔹 Usa siempre los elementos de protección personal recomendados.</p>
+      <p>🔹 Reporta de inmediato cualquier derrame o fuga a tu supervisor.</p>
+    </div>
+
+    <p class="mensaje-final-sga">
+      🧤 <em>Comprender los símbolos del SGA te protege a ti, a tus compañeros y al medio ambiente.</em>
+    </p>
+  </section>
+
+  <a href="quiz_modulo5.html" class="btn-quiz" id="btn-quiz"> >> Finalizar Módulo y Realizar Quiz << </a>
+</main>
+
+<!-- AGENTE -->
+<div class="agente" aria-hidden="true">
+  <img src="logos/agente.png" alt="Agente IA" loading="lazy">
+</div>
+
+<script>
+let voces = [];
+
+function cargarVoces() {
+  return new Promise((resolve) => {
+    function obtenerVoces() {
+      voces = speechSynthesis.getVoices();
+      if (voces.length > 0) resolve(voces);
+      else setTimeout(obtenerVoces, 200);
+    }
+    obtenerVoces();
+  });
+}
+
+function hablar(texto, callback = null) {
+  if (!("speechSynthesis" in window)) {
+    alert("Tu navegador no soporta texto a voz.");
+    if (callback) callback();
+    return;
+  }
+
+  cargarVoces().then(() => {
+    const voz = voces.find(v => v.lang.startsWith("es")) || voces[0];
+    const mensaje = new SpeechSynthesisUtterance(texto);
+    mensaje.voice = voz;
+    mensaje.rate = 1;
+    mensaje.pitch = 1;
+    mensaje.volume = 1;
+    mensaje.onend = () => { if (callback) callback(); };
+    speechSynthesis.cancel();
+    speechSynthesis.speak(mensaje);
+  });
+}
+
+// ✅ Mostrar botón del quiz si ya se completó antes
+document.addEventListener("DOMContentLoaded", () => {
+  const btnQuiz = document.getElementById("btn-quiz");
+  const btnIniciar = document.getElementById("btn-iniciar");
+
+  let completados = JSON.parse(localStorage.getItem("modulosCompletados")) || [];
+  if (completados.includes(5)) {
+    btnQuiz.style.display = "block";
+    btnIniciar.style.display = "none";
+  }
+
+  btnIniciar.addEventListener("click", function() {
+    btnIniciar.style.display = "none";
+
+    const texto = "Bienvenido al módulo cinco, Gestión Ambiental. Aquí aprenderás sobre el manejo adecuado de residuos, el uso eficiente de recursos, los impactos ambientales, y el Sistema Globalmente Armonizado. Lee con atención cada parte y al finalizar podrás realizar el quiz para evaluar tu aprendizaje. ¡Comencemos!";
+
+    hablar(texto, () => {
+      // Mostrar botón del quiz cuando termine la narración
+      btnQuiz.style.display = "block";
+
+      // Guardar progreso en localStorage
+      let completados = JSON.parse(localStorage.getItem("modulosCompletados")) || [];
+      if (!completados.includes(5)) {
+        completados.push(5);
+        localStorage.setItem("modulosCompletados", JSON.stringify(completados));
+      }
+    });
+  });
+});
+</script>
