@@ -1,0 +1,15 @@
+# Configuracion de despliegue en Netlify
+#
+# Este sitio es HTML estatico puro: no hay package.json, ni dependencias,
+# ni proceso de compilacion. La UI de Netlify tenia configurado "npm run dev",
+# lo que hacia fallar el deploy con ENOENT al no encontrar package.json.
+#
+# Lo definido en este archivo tiene precedencia sobre la configuracion de la UI.
+
+[build]
+  # No hay nada que compilar: solo se publican los archivos tal cual.
+  # El echo garantiza una salida con codigo 0 y deja constancia en el log.
+  command = "echo 'Sitio estatico: no requiere paso de build'"
+
+  # Los HTML (index.html, modulos, quizzes) estan en la raiz del repositorio.
+  publish = "."
